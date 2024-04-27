@@ -1,0 +1,26 @@
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[user]
+	name = Jack Conner
+	email = 1jackconner@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[alias]
+    gs = status -sb
+    ga = add
+    gc = commit -m
+    gp = push
+    gl = log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit
+    gd = diff --color-words
+    gco = checkout
+    gb = branch -a
+    gm = merge
+    gf = fetch
+    gr = remote -v
+    gss = "!f() { git status -sb | sed -e \"s/\\(\\[behind \\x1b\\[0;31m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbc')/\" -e \"s/\\(\\[ahead \\x1b\\[0;32m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbd')/\"; }; f"
+    gll = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit | sed \"s/\\(.*\\)/  \\1/\"; }; f"
+    glt = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit --all | sed \"s/\\(.*\\)/  \\1/\" | tree --fromfile; }; f"
