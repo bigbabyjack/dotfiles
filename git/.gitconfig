@@ -17,6 +17,7 @@
 	lg = log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
 	d = diff --color-words
 	co = checkout
+	cob = checkout -b
 	b = branch -a
 	m = merge
 	f = fetch
