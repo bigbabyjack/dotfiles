@@ -13,6 +13,7 @@
 	s = status -sb
 	a = add
 	cm = commit -m
+	cma = commit -ma
 	p = push
 	lg = log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
 	diff = diff --color-words
