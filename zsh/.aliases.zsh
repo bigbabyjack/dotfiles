@@ -12,12 +12,12 @@ alias l='lsd -CF'
 
 # dotfile commands
 alias dotfiles='cd ~/dotfiles'
-alias zshrc='cd ~/dotfiles/zsh/.zshrc && nvim .'
-alias zshaliases='cd ~/dotfiles/zsh/.aliases.zsh &&  nvim .'
+alias zshrc='cd ~/dotfiles/zsh && nvim .zshrc'
+alias zshaliases='cd ~/dotfiles/zsh &&  nvim .aliases.zsh'
 alias zshconfig='cd ~/dotfiles/zsh'
-alias gitconfig='cd ~/dotfiles/git/.gitconfig'
-alias weztermconfig='cd ~/dotfiles/wezterm/wezterm.lua && nvim .'
-alias nvimconfig='cd ~/dotfiles/nvim/init.lua && nvim .'
+alias gitconfig='cd ~/dotfiles/git && nvim .gitconfig'
+alias weztermconfig='cd ~/dotfiles/wezterm && nvim wezterm.lua'
+alias nvimconfig='cd ~/dotfiles/nvim && nvim init.lua'
 
 # Utility aliases
 alias c='clear'
