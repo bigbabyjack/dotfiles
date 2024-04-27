@@ -41,3 +41,8 @@ alias update='sudo softwareupdate -i -a'
 
 # Git
 alias lg='lazygit'
+
+# Python
+alias python='python3'
+alias activate='source env/bin/activate'
+alias mkvenv='python -m venv env'
