@@ -19,6 +19,16 @@ alias gitconfig='cd ~/dotfiles/git && nvim .gitconfig'
 alias weztermconfig='cd ~/dotfiles/wezterm && nvim wezterm.lua'
 alias nvimconfig='cd ~/dotfiles/nvim && nvim init.lua'
 
+# Navigation aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias -- -='cd -'
+
+# shortcut commands
+alias workspace='cd ~/workspace'
+
 # Utility aliases
 alias c='clear'
 alias h='history'
@@ -28,13 +38,6 @@ alias mkdir='mkdir -pv'
 alias ping='ping -c 5'
 alias ports='sudo lsof -iTCP -sTCP:LISTEN -P'
 alias update='sudo softwareupdate -i -a'
-
-# Navigation aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias ~='cd ~'
-alias -- -='cd -'
 
 # Git
 alias lg='lazygit'
