@@ -15,10 +15,11 @@
 	cm = commit -m
 	p = push
 	lg = log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
-	d = diff --color-words
+	diff = diff --color-words
+	del = branch -D
 	co = checkout
 	cob = checkout -b
-	b = branch -a
+	br = !git branch -a --format='%(if)%(HEAD)%(then)* %(else)  %(end)%(refname:short)'
 	m = merge
 	f = fetch
 	r = remote -v
