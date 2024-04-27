@@ -10,17 +10,17 @@
 [init]
 	defaultBranch = main
 [alias]
-	gs = git status -sb
-	ga = git add
-	gc = git commit -m
-	gp = git push
-	gl = git log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
-	gd = git diff --color-words
-	gco = git checkout
-	gb = git branch -a
-	gm = git merge
-	gf = git fetch
-	gr = git remote -v
-	gss = "!f() { git status -sb | sed -e \"s/\\(\\[behind \\x1b\\[0;31m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbc')/\" -e \"s/\\(\\[ahead \\x1b\\[0;32m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbd')/\"; }; f"
-	gll = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit | sed \"s/\\(.*\\)/  \\1/\"; }; f"
-	glt = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit --all | sed \"s/\\(.*\\)/  \\1/\" | tree --fromfile; }; f"
+	s = status -sb
+	a = add
+	cm = commit -m
+	p = push
+	lg = log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
+	d = diff --color-words
+	co = checkout
+	b = branch -a
+	m = merge
+	f = fetch
+	r = remote -v
+	ss = "!f() { git status -sb | sed -e \"s/\\(\\[behind \\x1b\\[0;31m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbc')/\" -e \"s/\\(\\[ahead \\x1b\\[0;32m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbd')/\"; }; f"
+	ll = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit | sed \"s/\\(.*\\)/  \\1/\"; }; f"
+	lt = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit --all | sed \"s/\\(.*\\)/  \\1/\" | tree --fromfile; }; f"

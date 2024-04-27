@@ -35,3 +35,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
 alias -- -='cd -'
+
+# Git
+alias lg='lazygit'
