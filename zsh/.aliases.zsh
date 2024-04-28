@@ -17,7 +17,7 @@ alias zshaliases='cd ~/dotfiles/zsh &&  nvim .aliases.zsh'
 alias zshconfig='cd ~/dotfiles/zsh'
 alias gitconfig='cd ~/dotfiles/git && nvim .gitconfig'
 alias weztermconfig='cd ~/dotfiles/wezterm && nvim wezterm.lua'
-alias nvimconfig='cd ~/dotfiles/nvim && nvim init.lua'
+alias nvimconfig='cd ~/dotfiles/nvim && nvim .'
 
 # Navigation aliases
 alias ..='cd ..'
