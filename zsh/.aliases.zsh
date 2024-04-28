@@ -46,3 +46,8 @@ alias lg='lazygit'
 alias python='python3'
 alias activate='source env/bin/activate'
 alias mkvenv='python -m venv env'
+
+# websites
+alias draw='open https://excalidraw.com/'
+alias google='open https://www.google.com/'
+alias github='open https://github.com/'
