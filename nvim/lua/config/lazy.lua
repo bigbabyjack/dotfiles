@@ -42,6 +42,14 @@ require("lazy").setup({
 			vim.keymap.set("n", "ga", "<Plug>(EasyAlign)", { noremap = true })
 		end,
 	},
+	{
+		"Exafunction/codeium.vim",
+		event = "BufEnter",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+	},
 	-- Here is a more advanced example where we pass configuration
 	-- options to `gitsigns.nvim`. This is equivalent to the following Lua:
 	--    require('gitsigns').setup({ ... })
@@ -166,17 +174,6 @@ require("lazy").setup({
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-			{
-				"Exafunction/codeium.nvim",
-				event = "BufEnter",
-				dependencies = {
-					"nvim-lua/plenary.nvim",
-					"hrsh7th/nvim-cmp",
-				},
-				config = function()
-					require("codeium").setup({})
-				end,
-			},
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		},
