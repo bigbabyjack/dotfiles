@@ -4,8 +4,8 @@
 #
 # ls commands
 alias ls='lsd'
-alias lt='lsd --tree'
-alias lat='lsd -A --tree'
+alias lt='lsd --tree --ignore-glob ".git" --ignore-glob "$(git ls-files --others --ignored --exclude-standard --directory)"'
+alias lat='lsd -A --tree --ignore-glob ".git" --ignore-glob "$(git ls-files --others --ignored --exclude-standard --directory)"'
 alias ll='lsd -alF'
 alias la='lsd -A'
 alias l='lsd -CF'
