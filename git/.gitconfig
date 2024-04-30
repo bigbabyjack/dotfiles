@@ -1,10 +1,5 @@
-[credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-[user]
-	name = Jack Conner
-	email = 1jackconner@gmail.com
+[includeIf "gitdir:~/"]
+    path = ~/.gitconfig_private
 [core]
 	editor = nvim
 [init]
