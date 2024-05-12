@@ -13,8 +13,8 @@
 	lg = log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
 	diff = diff --color-words
 	del = branch -D
-	co = checkout
-	cob = checkout -b
+	sw = switch
+	swc = switch -c
 	br = !git branch -a --format='%(if)%(HEAD)%(then)* %(else)  %(end)%(refname:short)'
 	m = merge
 	f = fetch
