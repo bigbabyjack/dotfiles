@@ -26,6 +26,7 @@ require("lazy").setup({
 		config = function()
 			require("config.indentation").setup()
 		end,
+		opts = {},
 	}, -- Detect tabstop and shiftwidth automatically
 	-- NOTE: Plugins can also be added by using a table,
 	-- with the first argument being the link and the following
@@ -476,7 +477,20 @@ require("lazy").setup({
 			})
 		end,
 	},
-
+	{
+		"ray-x/go.nvim",
+		dependencies = { -- optional packages
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup()
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
+		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+	},
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		lazy = false,
@@ -505,7 +519,7 @@ require("lazy").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
+				python = { "black" },
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.

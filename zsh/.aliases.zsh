@@ -29,6 +29,9 @@ alias -- -='cd -'
 # shortcut commands
 alias workspace='cd ~/workspace'
 
+# vim
+alias vim='nvim .'
+
 # Utility aliases
 alias c='clear'
 alias h='history'
