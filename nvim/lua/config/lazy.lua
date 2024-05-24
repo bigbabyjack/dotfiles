@@ -23,9 +23,6 @@ require("lazy").setup({
 	{
 		"tpope/vim-sleuth",
 		event = "BufReadPost",
-		config = function()
-			require("config.indentation").setup()
-		end,
 		opts = {},
 	}, -- Detect tabstop and shiftwidth automatically
 	-- NOTE: Plugins can also be added by using a table,
