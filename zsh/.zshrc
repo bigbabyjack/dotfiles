@@ -85,6 +85,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 export PATH="$PATH:$HOME/.scripts/"
+export PATH="$PATH:$HOME/.scripts/dev-setup/"
 export PATH="$PATH:$HOME/go/bin"
 
 # Generated for envman. Do not edit.
