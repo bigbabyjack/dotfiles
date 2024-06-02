@@ -1,4 +1,6 @@
 require("config.options")
-require("config.keymaps")
 require("config.autocmds")
+require("config.keymaps")
 require("config.lazy")
+require("config.none-ls")
+require("custom.plugins")

@@ -45,6 +45,7 @@ require("lazy").setup({
 			-- Start interactive EasyAlign for a motion/text object (e.g. gaip)
 			vim.keymap.set("n", "ga", "<Plug>(EasyAlign)", { noremap = true })
 		end,
+		opts = {},
 	},
 	{
 		"iamcco/markdown-preview.nvim",
@@ -54,14 +55,14 @@ require("lazy").setup({
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-	-- {
-	"Exafunction/codeium.vim",
-	-- 	event = "BufEnter",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"hrsh7th/nvim-cmp",
-	-- 	},
-	-- },
+	{
+		"Exafunction/codeium.vim",
+		event = "BufEnter",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+	},
 	-- Here is a more advanced example where we pass configuration
 	-- options to `gitsigns.nvim`. This is equivalent to the following Lua:
 	--    require('gitsigns').setup({ ... })
@@ -82,7 +83,7 @@ require("lazy").setup({
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
-		opts = { floating_window = false },
+		opts = {},
 		config = function(_, opts)
 			require("lsp_signature").setup(opts)
 		end,
@@ -285,7 +286,19 @@ require("lazy").setup({
 			-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 			-- used for completion, annotations and signatures of Neovim apis
 			{ "folke/neodev.nvim", opts = {} },
-			{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+			{
+				"catppuccin/nvim",
+				name = "catppuccin",
+				priority = 1000,
+				opts = {
+					integrations = {
+						cmp = true,
+						gitsigns = true,
+						nvimtree = true,
+						treesitter = true,
+					},
+				},
+			},
 		},
 		config = function()
 			-- Brief aside: **What is LSP?**

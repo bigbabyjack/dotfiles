@@ -8,6 +8,7 @@ return {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
+		opts = {},
 		-- use opts = {} for passing setup options
 		-- this is equalent to setup({}) function
 	},
@@ -50,5 +51,10 @@ return {
 				vim.keymap.set("n", "<space>-", require("oil").toggle_float)
 			end,
 		},
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = { theme = "catppuccin-frappe" },
 	},
 }
