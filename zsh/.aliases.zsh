@@ -28,6 +28,7 @@ alias -- -='cd -'
 
 # shortcut commands
 alias workspace='cd ~/workspace'
+alias cdbootdev='cd ~/workspace/boot-dev'
 
 # vim
 alias vim='nvim .'

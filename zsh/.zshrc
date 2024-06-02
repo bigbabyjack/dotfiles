@@ -87,6 +87,7 @@ PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 export PATH="$PATH:$HOME/.scripts/"
 export PATH="$PATH:$HOME/.scripts/dev-setup/"
 export PATH="$PATH:$HOME/go/bin"
+export EDITOR="nvim"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
