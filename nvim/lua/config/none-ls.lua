@@ -7,6 +7,7 @@ return {
 				null_ls.builtins.formatting.sylelua,
 				null_ls.builtins.code_actions.impl,
 				null_ls.builtins.completion.luasnip,
+				null_ls.builints.formatting.black,
 			},
 		})
 	end,

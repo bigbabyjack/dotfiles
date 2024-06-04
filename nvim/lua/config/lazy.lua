@@ -8,7 +8,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
---
 --  To check the current status of your plugins, run
 --    :Lazy
 --
@@ -24,9 +23,7 @@ require("lazy").setup({
 		"tpope/vim-sleuth",
 		event = "BufReadPost",
 		opts = {},
-	}, -- Detect tabstop and shiftwidth automatically
-	-- NOTE: Plugins can also be added by using a table,
-	-- with the first argument being the link and the following
+	}, -- Detect tabstop and shiftwidth automatically NOTE: Plugins can also be added by using a table, with the first argument being the link and the following
 	-- keys can be used to configure plugin behavior/loading/etc.
 	--
 	-- Use `opts = {}` to force a plugin to be loaded.
@@ -41,7 +38,6 @@ require("lazy").setup({
 		config = function()
 			-- Start interactive EasyAlign in visual mode (e.g. vipga)
 			vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { noremap = true })
-
 			-- Start interactive EasyAlign for a motion/text object (e.g. gaip)
 			vim.keymap.set("n", "ga", "<Plug>(EasyAlign)", { noremap = true })
 		end,
@@ -638,6 +634,7 @@ require("lazy").setup({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
+					{ name = "codeium" },
 				},
 			})
 		end,
@@ -717,7 +714,7 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opts = {
-			ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
+			ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc", "go", "python" },
 			-- Autoinstall languages that are not installed
 			auto_install = true,
 			highlight = {
