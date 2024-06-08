@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+	{ "ThePrimeagen/vim-be-good" },
 	{
 		"tpope/vim-sleuth",
 		event = "BufReadPost",
@@ -29,7 +30,7 @@ require("lazy").setup({
 	-- Use `opts = {}` to force a plugin to be loaded.
 	--
 	--  This is equivalent to:
-	--    require('Comment').setup({})
+	-- require('Comment').setup({})
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
@@ -491,7 +492,28 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
-			require("go").setup()
+			require("go").setup({
+				lsp_codelens = false,
+				lsp_inlay_hints = {
+					enable = false,
+				},
+			})
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "go",
+				callback = function()
+					-- Set up the fillstruct keymap for Go files
+					vim.api.nvim_buf_set_keymap(
+						0,
+						"n",
+						"<leader>fs",
+						":GoFillStruct<CR>",
+						{ noremap = true, silent = true }
+					)
+
+					-- Example: Enable Go code formatting on save
+					vim.cmd('autocmd BufWritePre *.go :silent! lua require("go.format").goimport()')
+				end,
+			})
 		end,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
@@ -645,7 +667,8 @@ require("lazy").setup({
 		-- change the command in the config to whatever the name of that colorscheme is.
 		--
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-		"folke/tokyonight.nvim",
+		"rose-pine/neovim",
+		as = "rose-pine",
 		opts = {
 			transparent = true,
 			styles = {
@@ -654,11 +677,11 @@ require("lazy").setup({
 			},
 		},
 		priority = 1000, -- Make sure to load this before all the other start plugins.
-		init = function()
+		config = function()
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("catppuccin-frappe")
+			vim.cmd.colorscheme("rose-pine-moon")
 
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
