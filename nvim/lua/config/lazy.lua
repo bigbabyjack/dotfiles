@@ -428,6 +428,7 @@ require("lazy").setup({
 				pyright = {},
 				tsserver = {},
 				prettier = {},
+				templ = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -510,6 +511,8 @@ require("lazy").setup({
 						{ noremap = true, silent = true }
 					)
 
+					vim.api.nvim_buf_set_keymap(0, "n", "<leader>fr", ":GoRun<CR>", { noremap = true, silent = true })
+
 					-- Example: Enable Go code formatting on save
 					vim.cmd('autocmd BufWritePre *.go :silent! lua require("go.format").goimport()')
 				end,
@@ -560,6 +563,7 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
+			{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 			-- Snippet Engine & its associated nvim-cmp source
 			{
 				"L3MON4D3/LuaSnip",
