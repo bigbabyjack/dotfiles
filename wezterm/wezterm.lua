@@ -4,8 +4,30 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+-- Determine the operating system
+local os_name = wezterm.target_triple
+
+if os_name:find("windows") then
+	-- Windows-specific configuration
+	config.default_prog = { "wsl.exe" }
+	config.launch_menu = {
+		{
+			label = "PowerShell",
+			args = { "powershell.exe", "-NoLogo" },
+		},
+		{
+			label = "Command Prompt",
+			args = { "cmd.exe" },
+		},
+	}
+elseif os_name:find("darwin") then
+	-- macOS-specific configuration
+	config.default_prog = { "/bin/zsh" }
+end
+
 -- This is where you actually apply your config choices
 window_decorations = "RESIZE"
+
 -- For example, changing the color scheme:
 config.color_scheme = "rose-pine-moon"
 
