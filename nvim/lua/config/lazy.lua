@@ -108,12 +108,17 @@ require("lazy").setup({
 			require("which-key").setup()
 
 			-- Document existing key chains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+			require("which-key").add({
+				{ "<leader>c", group = "[C]ode" },
+				{ "<leader>c_", hidden = true },
+				{ "<leader>d", group = "[D]ocument" },
+				{ "<leader>d_", hidden = true },
+				{ "<leader>r", group = "[R]ename" },
+				{ "<leader>r_", hidden = true },
+				{ "<leader>s", group = "[S]earch" },
+				{ "<leader>s_", hidden = true },
+				{ "<leader>w", group = "[W]orkspace" },
+				{ "<leader>w_", hidden = true },
 			})
 		end,
 	},
@@ -512,7 +517,13 @@ require("lazy").setup({
 					)
 
 					vim.api.nvim_buf_set_keymap(0, "n", "<leader>fr", ":GoRun<CR>", { noremap = true, silent = true })
-
+					vim.api.nvim_buf_set_keymap(
+						0,
+						"n",
+						"<leader>ft",
+						":GoTest -v<CR>",
+						{ noremap = true, silent = true }
+					)
 					-- Example: Enable Go code formatting on save
 					vim.cmd('autocmd BufWritePre *.go :silent! lua require("go.format").goimport()')
 				end,

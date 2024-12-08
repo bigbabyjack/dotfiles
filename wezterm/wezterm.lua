@@ -20,8 +20,6 @@ config.colors = {
 		inactive_tab_edge = "#626880",
 	},
 }
---
--- config.hide_tab_bar_if_only_one_tab = true
 
 -- The filled in variant of the < symbol
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
@@ -99,5 +97,41 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 	end
 	window:set_config_overrides(overrides)
 end)
+
+-- Leader key and keybindings
+config.keys = {
+	-- Set Ctrl-a as the leader key
+	{
+		key = "a",
+		mods = "CTRL",
+		action = wezterm.action.ActivateKeyTable({
+			name = "leader",
+			one_shot = false,
+			timeout_milliseconds = 1000,
+		}),
+	},
+}
+
+-- Define the leader key table
+config.key_tables = {
+	leader = {
+		-- Split panes
+		{ key = "v", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+		{ key = "h", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+
+		-- Move between panes
+		{ key = "h", action = wezterm.action.ActivatePaneDirection("Left") },
+		{ key = "j", action = wezterm.action.ActivatePaneDirection("Down") },
+		{ key = "k", action = wezterm.action.ActivatePaneDirection("Up") },
+		{ key = "l", action = wezterm.action.ActivatePaneDirection("Right") },
+
+		-- Close the current pane
+		{ key = "w", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+
+		-- Exit leader mode explicitly with 'q'
+		{ key = "q", action = "PopKeyTable" },
+	},
+}
+
 -- and finally, return the configuration to wezterm
 return config

@@ -24,3 +24,8 @@
 	lt = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit --all | sed \"s/\\(.*\\)/  \\1/\" | tree --fromfile; }; f"
 [pull]
 	rebase = true
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
