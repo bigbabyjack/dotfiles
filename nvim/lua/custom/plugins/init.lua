@@ -57,4 +57,21 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = { theme = "catppuccin-frappe" },
 	},
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup({
+				filetypes = {
+					"html",
+					"xml",
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"svelte",
+					"vue",
+				},
+			})
+		end,
+	},
 }

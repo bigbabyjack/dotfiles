@@ -26,22 +26,20 @@ elseif os_name:find("darwin") then
 end
 
 -- This is where you actually apply your config choices
-window_decorations = "RESIZE"
+config.window_decorations = "RESIZE"
 
 -- For example, changing the color scheme:
-config.color_scheme = "rose-pine-moon"
 
-config.window_frame = {
-	font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }),
-	active_titlebar_bg = "#232634",
-}
+config.font = wezterm.font("MesloLGS NF")
 
-config.colors = {
-	tab_bar = {
-		background = "#626880",
-		inactive_tab_edge = "#626880",
-	},
-}
+local builtin_schemes = wezterm.color.get_builtin_schemes()
+local selected_scheme = "Gruvbox Material (Gogh)"
+config.color_scheme = selected_scheme
+if builtin_schemes[selected_scheme] then
+	config.colors = builtin_schemes[selected_scheme]
+else
+	wezterm.log_warn("Color scheme not found: " .. selected_scheme)
+end
 
 -- The filled in variant of the < symbol
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
@@ -64,15 +62,15 @@ function tab_title(tab_info)
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local edge_background = "#303446"
-	local background = "#414559"
-	local foreground = "#51576d"
+	local edge_background = config.colors.tab_bar_background
+	local background = config.colors.tab_bar_background
+	local foreground = config.colors.tab_bar_foreground
 
 	if tab.is_active then
-		background = "#8caaee"
+		background = config.colors.tab_active
 	elseif hover then
-		background = "#8caaee"
-		foreground = "#c6d0f5"
+		background = config.colors.tab_hover
+		foreground = config.colors.tab_hover_foreground
 	end
 
 	local edge_foreground = background
@@ -132,14 +130,20 @@ config.keys = {
 			timeout_milliseconds = 1000,
 		}),
 	},
+	{
+		key = "f",
+		mods = "ALT",
+		action = wezterm.action.TogglePaneZoomState,
+	},
 }
 
 -- Define the leader key table
 config.key_tables = {
 	leader = {
+		{ key = "c", action = wezterm.action.ActivateCopyMode },
 		-- Split panes
 		{ key = "v", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-		{ key = "h", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+		{ key = "s", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 
 		-- Move between panes
 		{ key = "h", action = wezterm.action.ActivatePaneDirection("Left") },
@@ -152,6 +156,17 @@ config.key_tables = {
 
 		-- Exit leader mode explicitly with 'q'
 		{ key = "q", action = "PopKeyTable" },
+		{
+			key = ",",
+			action = wezterm.action.PromptInputLine({
+				description = "Enter new name for tab",
+				action = wezterm.action_callback(function(window, pane, line)
+					if line then
+						window:active_tab():set_title(line)
+					end
+				end),
+			}),
+		},
 	},
 }
 

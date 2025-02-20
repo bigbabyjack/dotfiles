@@ -52,14 +52,14 @@ require("lazy").setup({
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-	{
-		"Exafunction/codeium.vim",
-		event = "BufEnter",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
-	},
+	-- {
+	-- 	"Exafunction/codeium.vim",
+	-- 	event = "BufEnter",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"hrsh7th/nvim-cmp",
+	-- 	},
+	-- },
 	-- Here is a more advanced example where we pass configuration
 	-- options to `gitsigns.nvim`. This is equivalent to the following Lua:
 	--    require('gitsigns').setup({ ... })
@@ -428,10 +428,8 @@ require("lazy").setup({
 			local servers = {
 				-- clangd = {},
 				gopls = {},
-				ruff_lsp = {},
 				ruff = {},
 				pyright = {},
-				tsserver = {},
 				prettier = {},
 				templ = {},
 				-- rust_analyzer = {},
@@ -606,6 +604,7 @@ require("lazy").setup({
 			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			"tzachar/cmp-ai",
 		},
 		config = function()
 			-- See `:help cmp`
@@ -671,38 +670,44 @@ require("lazy").setup({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
-					{ name = "codeium" },
+					{ name = "cmp_ai" },
+					-- { name = "codeium" },
 				},
+			})
+
+			local cmp_ai = require("cmp_ai.config")
+
+			cmp_ai:setup({
+				max_lines = 100,
+				provider = "Ollama",
+				provider_options = {
+					model = "qwen2.5-coder:7b",
+					prompt = function(lines_before, lines_after)
+						-- You may include filetype and/or other project-wise context in this string as well.
+						-- Consult model documentation in case there are special tokens for this.
+						return "<|fim_prefix|>" .. lines_before .. "<|fim_suffix|>" .. lines_after .. "<|fim_middle|>"
+					end,
+				},
+				notify = true,
+				notify_callback = function(msg)
+					vim.notify(msg)
+				end,
+				run_on_every_keystroke = false,
 			})
 		end,
 	},
-
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is.
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-		"rose-pine/neovim",
-		as = "rose-pine",
-		opts = {
-			transparent = true,
-			styles = {
-				sidebars = "transparent",
-				floats = "transparent",
-			},
-		},
-		priority = 1000, -- Make sure to load this before all the other start plugins.
+	{ "github/copilot.vim" },
+	{
+		"sainnhe/gruvbox-material",
+		lazy = false,
+		priority = 1000,
 		config = function()
-			-- Load the colorscheme here.
-			-- Like many other themes, this one has different styles, and you could load
-			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("rose-pine-moon")
-
-			-- You can configure highlights by doing something like:
-			vim.cmd.hi("Comment gui=none")
+			-- Optionally configure and load the colorscheme
+			-- directly inside the plugin declaration.
+			vim.g.gruvbox_material_enable_italic = true
+			vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
-
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",

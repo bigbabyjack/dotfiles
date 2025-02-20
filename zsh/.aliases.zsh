@@ -31,7 +31,7 @@ alias workspace='cd ~/workspace'
 alias cdbootdev='cd ~/workspace/bootdev'
 
 # vim
-alias vim='nvim .'
+alias vim='nvim'
 
 # Utility aliases
 alias c='clear'
@@ -47,11 +47,6 @@ alias update='sudo softwareupdate -i -a'
 alias lg='lazygit'
 
 # Python
-alias python='python3'
 alias activate='source env/bin/activate'
 alias mkvenv='python -m venv env'
-
-# websites
-alias draw='open https://excalidraw.com/'
-alias google='open https://www.google.com/'
-alias github='open https://github.com/'
+eval "$(gh copilot alias -- zsh)"
