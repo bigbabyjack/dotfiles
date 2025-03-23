@@ -1,9 +1,13 @@
-[includeIf "gitdir:~/"]
-    path = ~/.gitconfig_private
-[core]
-	editor = nvim
-[init]
-	defaultBranch = main
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = Jack Conner
+	email = 1jackconner@gmail.com
 [alias]
 	s = status -sb
 	a = add
@@ -13,8 +17,8 @@
 	lg = log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
 	diff = diff --color-words
 	del = branch -D
-	sw = switch
-	swc = switch -c
+	co = checkout
+	cob = checkout -b
 	br = !git branch -a --format='%(if)%(HEAD)%(then)* %(else)  %(end)%(refname:short)'
 	m = merge
 	f = fetch
@@ -22,10 +26,7 @@
 	ss = "!f() { git status -sb | sed -e \"s/\\(\\[behind \\x1b\\[0;31m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbc')/\" -e \"s/\\(\\[ahead \\x1b\\[0;32m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbd')/\"; }; f"
 	ll = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit | sed \"s/\\(.*\\)/  \\1/\"; }; f"
 	lt = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit --all | sed \"s/\\(.*\\)/  \\1/\" | tree --fromfile; }; f"
+[init]
+	defaultBranch = main
 [pull]
 	rebase = true
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true

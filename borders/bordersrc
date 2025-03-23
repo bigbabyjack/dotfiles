@@ -1,0 +1,11 @@
+#!/bin/bash
+
+options=(
+    style=round
+    width=6.0
+    hidpi=on
+    active_color=0xffea6962  # Gruvbox Material Red with full opacity
+    inactive_color=0xff928374  # Gruvbox Material Gray 1 with full opacity
+)
+
+borders "${options[@]}"

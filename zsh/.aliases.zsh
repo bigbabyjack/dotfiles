@@ -10,6 +10,14 @@ alias ll='lsd -alF'
 alias la='lsd -A'
 alias l='lsd -CF'
 
+alias cdcg="cd ~/cg-github/"
+alias cdqaws="cd ~/cg-github/core-ml-question-answer-web-service/"
+alias cdea="cd ~/cg-github/core-ml-exploratory-analytics/"
+alias g="git"
+alias activate="source env/bin/activate"
+
+alias lg="lazygit"
+
 # dotfile commands
 alias dotfiles='cd ~/dotfiles'
 alias zshrc='cd ~/dotfiles/zsh && nvim .zshrc'
@@ -27,11 +35,7 @@ alias ~='cd ~'
 alias -- -='cd -'
 
 # shortcut commands
-alias workspace='cd ~/workspace'
-alias cdbootdev='cd ~/workspace/bootdev'
-
-# vim
-alias vim='nvim'
+# alias workspace='cd ~/workspace'
 
 # Utility aliases
 alias c='clear'
@@ -47,6 +51,20 @@ alias update='sudo softwareupdate -i -a'
 alias lg='lazygit'
 
 # Python
+alias python='python3'
 alias activate='source env/bin/activate'
 alias mkvenv='python -m venv env'
-eval "$(gh copilot alias -- zsh)"
+
+# websites
+alias draw='open https://excalidraw.com/'
+alias google='open https://www.google.com/'
+alias github='open https://github.com/'
+
+alias vim="nvim"
+alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
+
+alias repeatkeyon="defaults write -g ApplePressAndHoldEnabled -bool false"
+alias repeatkeyoff="defaults write -g ApplePressAndHoldEnabled -bool true"
+
+alias reset-aws-token="okta-aws-cli web --profile core-ml-sdev"
+alias reset-qh-token="okta-awscli --okta-profile qh-prod --profile qh-prod"

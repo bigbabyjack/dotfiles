@@ -1,84 +1,72 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
-
--- This will hold the configuration.
+local act = wezterm.action
 local config = wezterm.config_builder()
 
--- Determine the operating system
-local os_name = wezterm.target_triple
+-- Set your color scheme.
+config.color_scheme = "Gruvbox Material (Gogh)"
+config.switch_to_last_active_tab_when_closing_tab = true
+config.font_size = 13.0
 
-if os_name:find("windows") then
-	-- Windows-specific configuration
-	config.default_prog = { "wsl.exe" }
-	config.launch_menu = {
-		{
-			label = "PowerShell",
-			args = { "powershell.exe", "-NoLogo" },
-		},
-		{
-			label = "Command Prompt",
-			args = { "cmd.exe" },
-		},
-	}
-elseif os_name:find("darwin") then
-	-- macOS-specific configuration
-	config.default_prog = { "/bin/zsh" }
-end
-
--- This is where you actually apply your config choices
-config.window_decorations = "RESIZE"
-
--- For example, changing the color scheme:
-
-config.font = wezterm.font("MesloLGS NF")
-
+-- Retrieve built‑in schemes so we can dynamically pull colors.
 local builtin_schemes = wezterm.color.get_builtin_schemes()
-local selected_scheme = "Gruvbox Material (Gogh)"
-config.color_scheme = selected_scheme
-if builtin_schemes[selected_scheme] then
-	config.colors = builtin_schemes[selected_scheme]
-else
-	wezterm.log_warn("Color scheme not found: " .. selected_scheme)
-end
+local scheme = builtin_schemes[config.color_scheme] or {}
 
--- The filled in variant of the < symbol
+config.window_frame = {
+	font = wezterm.font("MesloLGS NF"),
+	active_titlebar_bg = scheme.background or "#232634",
+}
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+
+config.colors = {
+	selection_bg = scheme.selection_bg or "#8caaee",
+	selection_fg = scheme.selection_fg or "#232634",
+	tab_bar = {
+		background = scheme.background or "#626880",
+		inactive_tab_edge = scheme.background or "#626880",
+		new_tab = {
+			bg_color = scheme.background or "#626880",
+			fg_color = scheme.foreground or "#232634",
+		},
+		new_tab_hover = {
+			bg_color = scheme.background or "#3b3052",
+			fg_color = scheme.foreground or "#232634",
+		},
+	},
+}
+
+-- Define arrow symbols for tab titles.
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
--- The filled in variant of the > symbol
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 
--- This function returns the suggested title for a tab.
--- It prefers the title that was set via `tab:set_title()`
--- or `wezterm cli set-tab-title`, but falls back to the
--- title of the active pane in that tab.
-function tab_title(tab_info)
+-- Helper function to determine the tab title.
+local function tab_title(tab_info)
 	local title = tab_info.tab_title
-	-- if the tab title is explicitly set, take that
 	if title and #title > 0 then
 		return title
 	end
-	-- Otherwise, use the title from the active pane
-	-- in that tab
 	return tab_info.active_pane.title
 end
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local edge_background = config.colors.tab_bar_background
-	local background = config.colors.tab_bar_background
-	local foreground = config.colors.tab_bar_foreground
+-- Format tab titles dynamically, ensuring active tab text is clearly visible.
+wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
+	-- Re-fetch the current scheme for dynamic coloring.
+	local scheme = builtin_schemes[config.color_scheme] or {}
+
+	local edge_background = scheme.background or "#303446"
+	local background = scheme.background or "#414559"
+	local foreground = scheme.foreground or "#51576d"
 
 	if tab.is_active then
-		background = config.colors.tab_active
+		background = scheme.cursor_bg or "#8caaee"
+		-- Explicitly set a contrasting text color for the active tab.
+		foreground = scheme.cursor_fg or "#232634"
 	elseif hover then
-		background = config.colors.tab_hover
-		foreground = config.colors.tab_hover_foreground
+		background = scheme.cursor_bg or "#8caaee"
+		foreground = scheme.cursor_fg or "#c6d0f5"
 	end
 
 	local edge_foreground = background
-
 	local title = tab_title(tab)
-
-	-- ensure that the titles fit in the available space,
-	-- and that we have room for the edges.
 	title = wezterm.truncate_right(title, max_width - 2)
 
 	return {
@@ -94,81 +82,82 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
--- for zenmode in nvim
-wezterm.on("user-var-changed", function(window, pane, name, value)
-	local overrides = window:get_config_overrides() or {}
-	if name == "ZEN_MODE" then
-		local incremental = value:find("+")
-		local number_value = tonumber(value)
-		if incremental ~= nil then
-			while number_value > 0 do
-				window:perform_action(wezterm.action.IncreaseFontSize, pane)
-				number_value = number_value - 1
-			end
-			overrides.enable_tab_bar = false
-		elseif number_value < 0 then
-			window:perform_action(wezterm.action.ResetFontSize, pane)
-			overrides.font_size = nil
-			overrides.enable_tab_bar = true
-		else
-			overrides.font_size = number_value
-			overrides.enable_tab_bar = false
-		end
-	end
-	window:set_config_overrides(overrides)
-end)
+-- Dim inactive panes.
+config.inactive_pane_hsb = {
+	saturation = 0.24,
+	brightness = 0.5,
+}
 
--- Leader key and keybindings
+-- Keys
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
-	-- Set Ctrl-a as the leader key
+	{ key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
+	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
+	{ key = "phys:Space", mods = "LEADER", action = act.ActivateCommandPalette },
+	{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+	{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
+	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
+	{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
+	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
+	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 	{
-		key = "a",
-		mods = "CTRL",
-		action = wezterm.action.ActivateKeyTable({
-			name = "leader",
-			one_shot = false,
-			timeout_milliseconds = 1000,
+		key = "e",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = wezterm.format({
+				{ Attribute = { Intensity = "Bold" } },
+				{ Foreground = { AnsiColor = "Fuchsia" } },
+				{ Text = "Renaming Tab Title...:" },
+			}),
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
 		}),
 	},
+	{ key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
+	{ key = "{", mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
+	{ key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
+	{ key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 	{
 		key = "f",
 		mods = "ALT",
 		action = wezterm.action.TogglePaneZoomState,
 	},
-}
-
--- Define the leader key table
-config.key_tables = {
-	leader = {
-		{ key = "c", action = wezterm.action.ActivateCopyMode },
-		-- Split panes
-		{ key = "v", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-		{ key = "s", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-
-		-- Move between panes
-		{ key = "h", action = wezterm.action.ActivatePaneDirection("Left") },
-		{ key = "j", action = wezterm.action.ActivatePaneDirection("Down") },
-		{ key = "k", action = wezterm.action.ActivatePaneDirection("Up") },
-		{ key = "l", action = wezterm.action.ActivatePaneDirection("Right") },
-
-		-- Close the current pane
-		{ key = "w", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
-
-		-- Exit leader mode explicitly with 'q'
-		{ key = "q", action = "PopKeyTable" },
-		{
-			key = ",",
-			action = wezterm.action.PromptInputLine({
-				description = "Enter new name for tab",
-				action = wezterm.action_callback(function(window, pane, line)
-					if line then
-						window:active_tab():set_title(line)
-					end
-				end),
-			}),
-		},
+	{
+		key = ",",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+	{
+		key = "w",
+		mods = "CTRL|ALT",
+		action = act.PromptInputLine({
+			description = "Enter workspace name",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					wezterm.action.ActivateWorkspace({
+						name = line,
+					})
+				end
+			end),
+		}),
 	},
 }
 
--- and finally, return the configuration to wezterm
 return config
