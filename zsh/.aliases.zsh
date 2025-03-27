@@ -55,16 +55,7 @@ alias python='python3'
 alias activate='source env/bin/activate'
 alias mkvenv='python -m venv env'
 
-# websites
-alias draw='open https://excalidraw.com/'
-alias google='open https://www.google.com/'
-alias github='open https://github.com/'
-
 alias vim="nvim"
-alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
 
 alias repeatkeyon="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias repeatkeyoff="defaults write -g ApplePressAndHoldEnabled -bool true"
-
-alias reset-aws-token="okta-aws-cli web --profile core-ml-sdev"
-alias reset-qh-token="okta-awscli --okta-profile qh-prod --profile qh-prod"
