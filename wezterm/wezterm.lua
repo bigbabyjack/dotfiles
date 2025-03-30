@@ -108,6 +108,15 @@ config.keys = {
 	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 	{
+		key = "f",
+		mods = "CTRL",
+		action = act.SplitPane({
+			direction = "Right",
+			command = { args = { "/Users/jack/bin/nvim_fzf.sh" } },
+			size = { Percent = 40 },
+		}),
+	},
+	{
 		key = "e",
 		mods = "LEADER",
 		action = act.PromptInputLine({
