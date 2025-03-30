@@ -10,10 +10,6 @@ alias ll='lsd -alF'
 alias la='lsd -A'
 alias l='lsd -CF'
 
-alias cdcg="cd ~/cg-github/"
-alias cdqaws="cd ~/cg-github/core-ml-question-answer-web-service/"
-alias cdea="cd ~/cg-github/core-ml-exploratory-analytics/"
-alias g="git"
 alias activate="source env/bin/activate"
 
 alias lg="lazygit"
