@@ -22,35 +22,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
-  keys = {
-    {
-      '<leader>ccq',
-      function()
-        local input = vim.fn.input 'Quick Chat: '
-        if input ~= '' then
-          require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
-        end
-      end,
-      desc = 'CopilotChat - Quick chat',
-    },
-    {
-      '<leader>cch',
-      function()
-        local actions = require 'CopilotChat.actions'
-        require('CopilotChat.integrations.telescope').pick(actions.help_actions())
-      end,
-      desc = 'CopilotChat - Help actions',
-    },
-    -- Show prompts actions with telescope
-    {
-      '<leader>ccp',
-      function()
-        local actions = require 'CopilotChat.actions'
-        require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
-      end,
-      desc = 'CopilotChat - Prompt actions',
-    },
-  },
   config = function()
     -- use
     -- Telescope is a fuzzy finder that comes with a lot of different things that

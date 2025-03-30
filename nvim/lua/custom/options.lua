@@ -4,6 +4,7 @@ vim.g.have_nerd_font = true
 
 -- lines
 vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -43,7 +44,5 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
--- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
--- disable swap files
-vim.opt.swapfile = false
+vim.opt.swapfile = true
