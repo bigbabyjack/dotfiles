@@ -4,6 +4,7 @@ return {
     'ray-x/guihua.lua',
     'neovim/nvim-lspconfig',
     'nvim-treesitter/nvim-treesitter',
+    'nvim-telescope/telescope.nvim',
   },
   config = function()
     require('go').setup {

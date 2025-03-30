@@ -14,18 +14,13 @@ return {
     -- C-k: Toggle signature help (if signature.enabled = true)
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = 'default', ['<C-space>'] = {
-      function(cmp)
-        cmp.show_signature()
-      end,
-    } },
 
     appearance = {
       nerd_font_variant = 'mono',
     },
 
     completion = { documentation = { auto_show = true } },
-    signature = { enabled = true },
+    signature = { enabled = true, window = { border = 'rounded', treesitter_highlighting = true } },
 
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
