@@ -4,7 +4,7 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="mytheme"
 
 zstyle ':omz:update' mode auto
 ENABLE_CORRECTION="true"
