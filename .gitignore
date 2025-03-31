@@ -4,3 +4,5 @@ lazy-lock.json
 .gitconfig-personal
 .gitconfig-work
 .gitconfig-env
+
+.aliases.*.zsh
