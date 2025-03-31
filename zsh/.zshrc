@@ -4,6 +4,8 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
+cat "$HOME/.gitconfig-$DEV_ENV" >> ~/.gitconfig
+
 ZSH_THEME="mytheme"
 
 zstyle ':omz:update' mode auto
