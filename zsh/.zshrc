@@ -5,10 +5,8 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 
 if [[ "$DEV_ENV" == "work" ]]; then
-    echo "Setting up work environment"
     ln -sf "$HOME/dotfiles/git/.gitconfig-work" "$HOME/dotfiles/git/.gitconfig-env"
 elif [[ "$DEV_ENV" == "personal" ]]; then
-    echo "Setting up personal environment"
     ln -sf "$HOME/dotfiles/git/.gitconfig-personal" "$HOME/dotfiles/git/.gitconfig-env"
 fi
 
