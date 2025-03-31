@@ -4,7 +4,11 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
-cat "$HOME/.gitconfig-$DEV_ENV" >> ~/.gitconfig
+if [[ "$DEV_ENV" == "work" ]]; then
+    ln -sf "$HOME/dotfiles/.gitconfig-work" "$HOME/dotfiles/.gitconfig-env"
+elif [[ "$DEV_ENV" == "personal" ]]; then
+    ln -sf "$HOME/dotfiles/.gitconfig-personal" "$HOME/dotfiles/.gitconfig-env"
+fi
 
 ZSH_THEME="mytheme"
 
