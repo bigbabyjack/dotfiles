@@ -1,39 +1,8 @@
-[credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-[user]
-	name = Jack Conner
-	email = 1jackconner@gmail.com
-[alias]
-	s = status -sb
-	a = add
-	cm = commit -m
-	cma = commit -ma
-	p = push
-	# Pipe the graph log through bat for highlighting and easier navigation
-	lg = "!f() { git log --graph --pretty=format:'%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit \"$@\" | bat --paging=always; }; f"
-	# Pipe diff output through bat (forcing diff syntax highlighting)
-	diff = "!f() { git diff --color=always \"$@\" | bat --paging=always --language=diff; }; f"
-	del = branch -D
-	co = checkout
-	cob = checkout -b
-	br = !git branch -a --format='%(if)%(HEAD)%(then)* %(else)  %(end)%(refname:short)'
-	m = merge
-	f = fetch
-	r = remote -v
-	# Leave status output as-is (with custom sed formatting)
-	ss = "!f() { git status -sb | sed -e \"s/\\(\\[behind \\x1b\\[0;31m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbc')/\" -e \"s/\\(\\[ahead \\x1b\\[0;32m\\)\\(.[0-9]*\\)/\\1\\2\\x1b[0m  $(echo -e '\\xf0\\x9f\\x94\\xbd')/\"; }; f"
-	# Pipe a slightly indented log through bat
-	ll = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit \"$@\" | sed \"s/\\(.*\\)/  \\1/\" | bat --paging=always; }; f"
-	# Optionally, if you want to pipe the tree output too
-	lt = "!f() { git log --graph --pretty=format:\"%C(magenta)%h%C(reset) -%C(red)%d%C(reset) %s %C(dim green)(%cr) %C(bold blue)<%an>%C(reset)\" --abbrev-commit --all \"$@\" | sed \"s/\\(.*\\)/  \\1/\" | tree --fromfile | bat --paging=always; }; f"
-[init]
-	defaultBranch = main
-[pull]
-	rebase = true
-[core]
-	editor = nvim
+[include]
+    path = ~/.gitconfig-common
+
+[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/personal/"]
+    path = ~/.gitconfig-personal
