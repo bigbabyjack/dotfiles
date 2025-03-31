@@ -1,13 +1,15 @@
-if [[ -n $HOME/dotfiles/.env ]]; then
+if [[ -f $HOME/dotfiles/.env ]]; then
     source $HOME/dotfiles/.env
 fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
 if [[ "$DEV_ENV" == "work" ]]; then
-    ln -sf "$HOME/dotfiles/.gitconfig-work" "$HOME/dotfiles/.gitconfig-env"
+    echo "Setting up work environment"
+    ln -sf "$HOME/dotfiles/git/.gitconfig-work" "$HOME/dotfiles/git/.gitconfig-env"
 elif [[ "$DEV_ENV" == "personal" ]]; then
-    ln -sf "$HOME/dotfiles/.gitconfig-personal" "$HOME/dotfiles/.gitconfig-env"
+    echo "Setting up personal environment"
+    ln -sf "$HOME/dotfiles/git/.gitconfig-personal" "$HOME/dotfiles/git/.gitconfig-env"
 fi
 
 ZSH_THEME="mytheme"
