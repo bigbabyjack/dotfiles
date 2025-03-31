@@ -56,4 +56,4 @@ alias vim="nvim"
 alias repeatkeyon="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias repeatkeyoff="defaults write -g ApplePressAndHoldEnabled -bool true"
 
-source $HOME/.zsh/.aliases.$DEV_ENV.zsh
+source $HOME/.aliases.$DEV_ENV.zsh
