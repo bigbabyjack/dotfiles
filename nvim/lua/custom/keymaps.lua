@@ -23,4 +23,6 @@ vim.keymap.set('n', '<space><space>x', '<cmd>source %<CR>', { desc = 'Source cur
 vim.keymap.set('n', '<space>x', ':.lua<CR>', { desc = 'Source current file' })
 vim.keymap.set('v', '<space>x', ':.lua<CR>', { desc = 'Source current file' })
 
-vim.keymap.set('n', '<leader>zz', '<cmd>lua require("zen-mode").toggle({plugins = { twilight = { enabled = false}} })<CR>', { desc = 'Toggle [Z]en mode' })
+vim.keymap.set('n', '<leader>zz',
+  '<cmd>lua require("zen-mode").toggle({plugins = { twilight = { enabled = false}} })<CR>',
+  { desc = 'Toggle [Z]en mode' })
