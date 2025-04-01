@@ -7,8 +7,18 @@ return {
     },
     build = "make tiktoken",                          -- Only on MacOS or Linux
     opts = {
-      -- See Configuration section for options
+      window = {
+        layout = 'float',
+        border = 'rounded'
+      }
     },
-    -- See Commands section for default commands if you want to lazy load on them
+    vim.keymap.set(
+      'n',
+      '<leader>cc',
+      function()
+        require("CopilotChat").toggle()
+      end,
+      { noremap = true, silent = true, desc = "Toggle Copilot Chat" }
+    )
   },
 }

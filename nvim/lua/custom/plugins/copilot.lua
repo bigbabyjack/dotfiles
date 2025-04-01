@@ -21,11 +21,9 @@ return {
       workspace_folders = {},
     }
 
-    local suggestion = require 'copilot.suggestion'
-
-    vim.keymap.set("n", "<leader>cpt", suggestion.toggle_auto_trigger(), { desc = "[T]oggle copilot auto trigger" })
-    vim.keymap.set("n", "<leader>cpaw", function()
-      vim.cmd('Copilot workspace add ' .. vim.fn.getcwd())
-    end)
+    vim.keymap.set('n', '<C-t>', function()
+      print("Toggling copilot")
+      require("copilot.suggestion").toggle_auto_trigger()
+    end, { noremap = true, silent = true, desc = "Toggle Copilot auto trigger" })
   end,
 }
