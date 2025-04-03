@@ -8,7 +8,6 @@ alias lt='lsd --tree --ignore-glob ".git" --ignore-glob "$(git ls-files --others
 alias lat='lsd -A --tree --ignore-glob ".git" --ignore-glob "$(git ls-files --others --ignored --exclude-standard --directory)"'
 alias ll='lsd -alF'
 alias la='lsd -A'
-alias l='lsd -CF'
 
 alias activate="source env/bin/activate"
 
