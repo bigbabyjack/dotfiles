@@ -21,7 +21,7 @@ return {
       workspace_folders = {},
     }
 
-    vim.keymap.set('n', '<C-t>', function()
+    vim.keymap.set('n', '<leader>cpt', function()
       print("Toggling copilot")
       require("copilot.suggestion").toggle_auto_trigger()
     end, { noremap = true, silent = true, desc = "Toggle Copilot auto trigger" })

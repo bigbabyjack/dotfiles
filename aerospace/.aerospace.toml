@@ -72,7 +72,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.horizontal = 8
     inner.vertical =   8
     outer.left =       8
-    outer.bottom =     [{monitor."Built-in Retina Display" = 16}, 48]
+    outer.bottom =     [{monitor."Built-in Retina Display" = 16}, {monitor."Dell S2417DG" = 16}, {monitor."VG248" = 16}, 16]
     outer.top =        [{monitor."Built-in Retina Display" = 16}, 48]
     outer.right =      8
 

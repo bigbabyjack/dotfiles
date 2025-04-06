@@ -29,3 +29,6 @@ eval "$(brew shellenv)"
 # Custom widget to accept autosuggestion or perform tab completion
 bindkey '^ ' autosuggest-accept
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion zsh)"
