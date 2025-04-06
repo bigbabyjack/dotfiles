@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 options=(
     style=square
     width=6.0

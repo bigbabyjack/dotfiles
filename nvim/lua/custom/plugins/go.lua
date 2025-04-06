@@ -22,7 +22,7 @@ return {
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>fr', ':GoRun<CR>', { noremap = true, silent = true })
 
         -- Example: Enable Go code formatting on save
-        vim.cmd 'autocmd BufWritePre *.go :silent! lua require("go.format").goimport()'
+        -- vim.cmd 'autocmd BufWritePre *.go :silent! lua require("go.format").goimport()'
       end,
     })
   end,
