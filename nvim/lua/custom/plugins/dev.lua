@@ -1,11 +1,11 @@
 return {
   {
-    dir = "~/workspace/ai-editor.nvim",
+    dir = "~/workspace/flux.nvim",
     dependencies = {
       "lunarmodules/luasocket",
     },
     config = function()
-      require "ai-editor".setup({})
+      require "flux.init".setup({})
     end
   }
 }
