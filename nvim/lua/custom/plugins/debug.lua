@@ -42,6 +42,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
       },
     }
 
@@ -86,5 +87,26 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+    require("dap").adapters.codelldb = {
+      type = 'server',
+      port = "${port}",
+      executable = {
+        command = vim.fn.exepath('codelldb'),
+        args = { "--port", "${port}" },
+      }
+    }
+
+    require("dap").configurations.rust = {
+      {
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+    }
   end,
 }

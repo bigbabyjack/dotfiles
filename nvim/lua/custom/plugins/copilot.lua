@@ -9,7 +9,7 @@ return {
         enabled = false,
       },
       suggestion = {
-        enabled = true,
+        enabled = false,
         auto_trigger = true,
         hide_during_completion = false,
         keymap = {
@@ -20,6 +20,7 @@ return {
       copilot_model = 'gpt-4o-copilot',
       workspace_folders = {},
     }
+
 
     vim.keymap.set('n', '<leader>cpt', function()
       print("Toggling copilot")

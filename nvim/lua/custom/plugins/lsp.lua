@@ -9,6 +9,11 @@ return { -- LSP Configuration & Plugins
       'folke/lazydev.nvim',
       ft = 'lua', -- only load on lua files
       opts = {
+        setup = {
+          rust_analyzer = function()
+            return true
+          end,
+        },
         library = {
           -- See the configuration section for more details
           -- Load luvit types when the `vim.uv` word is found
@@ -173,7 +178,7 @@ return { -- LSP Configuration & Plugins
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
+      'stylua',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

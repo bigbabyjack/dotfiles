@@ -12,13 +12,13 @@ return {
         border = 'rounded'
       }
     },
-    vim.keymap.set(
-      'n',
-      '<leader>cc',
-      function()
-        require("CopilotChat").toggle()
-      end,
-      { noremap = true, silent = true, desc = "Toggle Copilot Chat" }
-    )
+    -- vim.keymap.set(
+    --   'n',
+    --   '<leader>cc',
+    --   function()
+    --     require("CopilotChat").toggle()
+    --   end,
+    --   { noremap = true, silent = true, desc = "Toggle Copilot Chat" }
+    -- )
   },
 }
