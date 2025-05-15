@@ -46,3 +46,6 @@ vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
 vim.opt.swapfile = true
+
+-- for avante
+vim.opt.laststatus = 3
