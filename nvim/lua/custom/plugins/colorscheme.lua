@@ -1,5 +1,6 @@
 return { {
   'sainnhe/gruvbox-material',
+  lazy = true,
   priority = 1000,
   opts = {
     integrations = {
@@ -8,38 +9,49 @@ return { {
       nvimtree = true,
       treesitter = true,
     },
-  },
-  config = function()
-    vim.cmd.colorscheme 'gruvbox-material'
-    vim.g.gruvbox_material_background = 'medium'
-    vim.g.gruvbox_material_ui_contrast = 'low'
-    vim.g.gruvbox_material_enable_italic = 1
-    vim.g.gruvbox_material_better_performance = 1
-
-    -- OLED true black background overrides
-    vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "SignColumn", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "NormalNC", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "#000000" })
-
-    -- Optional: you may want to handle line numbers, status bar, etc.
-    vim.api.nvim_set_hl(0, "LineNr", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "StatusLine", { bg = "#000000" })
-    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#000000" })
-  end,
+  }
 },
   {
     "folke/tokyonight.nvim",
+    lazy = true,
+    priority = 1000,
     opts = {
-      style = "night",
+      style = "day",
       transparent = false,
       styles = {
         comments = { italic = true },
         keywords = { italic = true },
       }
-    }
+    },
   },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = true,
+    priority = 1000,
+    opts = {
+      variant = "moon",
+      disable_italics = true,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = { italic = false },
+        variables = { italic = false },
+      }
+    },
+  },
+  {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    lazy = true,
+    priority = 1000,
+    opts = {
+      flavour = "mocha", -- picks the warmest tones
+      integrations = {
+        treesitter = true,
+        telescope = true,
+        native_lsp = { enabled = true },
+      },
+    }
+  }
 }

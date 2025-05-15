@@ -3,7 +3,10 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 -- Set your color scheme.
-config.color_scheme = "Gruvbox Material (Gogh)"
+config.color_scheme = "Rose Pine Moon"
+config.window_background_opacity = 0.7
+config.macos_window_background_blur = 30
+
 config.switch_to_last_active_tab_when_closing_tab = true
 config.font_size = 13.0
 
@@ -21,7 +24,7 @@ config.colors = {
   selection_bg = scheme.selection_bg or "#8caaee",
   selection_fg = scheme.selection_fg or "#232634",
   tab_bar = {
-    background = scheme.background or "#626880",
+    background = scheme.background or "#232634",
     inactive_tab_edge = scheme.background or "#626880",
     new_tab = {
       bg_color = scheme.background or "#626880",
