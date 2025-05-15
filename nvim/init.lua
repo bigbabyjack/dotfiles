@@ -32,3 +32,5 @@ require('lazy').setup({
     },
   },
 })
+
+require('custom.colorscheme_manager').apply_saved()
