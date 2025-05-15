@@ -10,9 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 
-after-startup-command = [
-    'exec-and-forget borders'
-]
+after-startup-command = []
 
 exec-on-workspace-change = [ ]
 
@@ -23,7 +21,7 @@ start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# See: https://nikitabobko.github.
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
 accordion-padding = 30
@@ -62,12 +60,6 @@ automatically-unhide-macos-hidden-apps = false
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-    # inner.horizontal = 8
-    # inner.vertical =   8
-    # outer.left =       8
-    # outer.bottom =     [{monitor."Built-in Retina Display" = 16}, {monitor."Dell S2417DG" = 16}, {monitor."VG248" = 16}, 16]
-    # outer.top =        [{monitor."Built-in Retina Display" = 16}, 48]
-    # outer.right =      8
     inner.horizontal = 0
     inner.vertical   = 0
     outer.left       = 0
@@ -132,26 +124,16 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
-    alt-b = 'workspace B'
-    alt-c = 'workspace C'
-    alt-d = 'workspace D'
-    alt-e = 'workspace E'
-    alt-n = 'workspace N'
-    alt-t = 'workspace T'
-    alt-v = 'workspace V'
-    alt-s = 'workspace S'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-e = 'workspace e'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
-    alt-shift-b = 'move-node-to-workspace B'
-    alt-shift-c = 'move-node-to-workspace C'
-    alt-shift-d = 'move-node-to-workspace D'
-    alt-shift-e = 'move-node-to-workspace E'
-    alt-shift-n = 'move-node-to-workspace N'
-    alt-shift-t = 'move-node-to-workspace T'
-    alt-shift-v = 'move-node-to-workspace V'
-    alt-shift-s = 'move-node-to-workspace S'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-e = 'move-node-to-workspace e'
 
     alt-shift-f = 'fullscreen'
 
