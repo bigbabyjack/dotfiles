@@ -22,6 +22,7 @@ source ~/.aliases.zsh
 
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:"$HOME/bin"
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
 export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/bin/npm"
 eval "$(brew shellenv)"
