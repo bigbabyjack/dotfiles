@@ -4,34 +4,20 @@ return {
   build = "make",
   version = false,
   opts = {
-    ------------------------------------------------------------------
-    -- 1.  Chat uses the stock “ollama” provider but with a big model
-    ------------------------------------------------------------------
-    provider = "ollama",
-    ollama = {
-      model    = "llama3.2:3b", -- chat model
-      endpoint = "http://127.0.0.1:11434",
+    provider = "copilot",
+    openai = {
+      endpoint = "https://api.openai.com/v1",
+      model = "gpt-4.1-nano",
+      timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+      temperature = 0,
+      max_completion_tokens = 8192,
     },
-
-    ------------------------------------------------------------------
-    -- 2.  Autosuggest uses a *custom* provider that inherits ollama
-    ------------------------------------------------------------------
-    -- auto_suggestions_provider = "ollama_3b",
-    -- vendors = {
-    --   ollama_3b = {
-    --     __inherited_from = "ollama",
-    --     model            = "llama3.2:3b", -- light model for inline ghost-text
-    --   },
-    -- },
-
-    behaviour = { auto_suggestions = true, auto_set_keymaps = true, use_cwd_as_project_root = true },
-    suggestion = { debounce = 800, throttle = 800 },
+    behaviour = { auto_suggestions = true, auto_set_keymaps = true, use_cwd_as_project_root = true, enable_cursor_planning_mode = true },
     mappings = {
       suggestion = { accept = "<M-l>", next = "<M-]>", prev = "<M-[>", dismiss = "<C-]>" },
       submit     = { normal = "<CR>", insert = "<C-s>" },
     },
   },
-
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "stevearc/dressing.nvim",
