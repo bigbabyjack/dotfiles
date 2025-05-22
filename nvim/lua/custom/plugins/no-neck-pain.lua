@@ -11,16 +11,6 @@ return {
       },
     })
 
-    vim.api.nvim_create_autocmd(
-      { "VimEnter" },
-      {
-        callback = function()
-          require("no-neck-pain").toggle()
-        end,
-        desc = "Toggle No Neck Pain",
-      }
-    )
-
     vim.keymap.set("n", "<leader>nn", function()
       require("no-neck-pain").toggle()
     end, { desc = "Toggle [N]o [N]eck Pain" })
