@@ -34,7 +34,6 @@ Thumbs.db
 id_rsa*
 id_ed25519*
 known_hosts
-config
 
 # Application-specific profile configs
 .config-work/
