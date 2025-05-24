@@ -1,0 +1,66 @@
+# Neovim lazy-lock file
+lazy-lock.json
+
+# Environment configuration (contains personal settings)
+.env
+
+# Git profile-specific configurations
+.gitconfig-personal
+.gitconfig-work
+.gitconfig-env
+
+# Profile-specific aliases and configurations
+.aliases.*.zsh
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.backup.*
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# Editor swap files
+*.swp
+*.swo
+*~
+
+# SSH keys and configs (for security)
+id_rsa*
+id_ed25519*
+known_hosts
+config
+
+# Application-specific profile configs
+.config-work/
+.config-personal/
+
+# Package manager files
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Go
+go.sum
+
+# Rust
+target/
+Cargo.lock
+
+# Local development files
+.local/
+.cache/
