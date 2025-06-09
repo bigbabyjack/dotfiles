@@ -4,15 +4,15 @@ return {
   build = "make",
   version = false,
   opts = {
-    provider = "copilot",
+    provider = "openai",
     openai = {
       endpoint = "https://api.openai.com/v1",
-      model = "gpt-4.1-nano",
+      model = "o4-mini",
       timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
       temperature = 0,
       max_completion_tokens = 8192,
     },
-    behaviour = { auto_suggestions = true, auto_set_keymaps = true, use_cwd_as_project_root = true, enable_cursor_planning_mode = true },
+    behaviour = { auto_suggestions = false, auto_set_keymaps = true, use_cwd_as_project_root = true },
     mappings = {
       suggestion = { accept = "<M-l>", next = "<M-]>", prev = "<M-[>", dismiss = "<C-]>" },
       submit     = { normal = "<CR>", insert = "<C-s>" },
