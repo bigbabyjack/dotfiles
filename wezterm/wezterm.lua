@@ -30,8 +30,17 @@ config.color_scheme = colors.color_scheme
 config.window_background_opacity = colors.window_background_opacity
 config.macos_window_background_blur = colors.macos_window_background_blur
 config.window_frame = colors.window_frame
-config.colors = colors.colors
 config.inactive_pane_hsb = colors.inactive_pane_hsb
+
+-- Apply tab bar settings
+config.enable_tab_bar = colors.enable_tab_bar
+config.hide_tab_bar_if_only_one_tab = colors.hide_tab_bar_if_only_one_tab
+config.show_new_tab_button_in_tab_bar = colors.show_new_tab_button_in_tab_bar
+config.show_tab_index_in_tab_bar = colors.show_tab_index_in_tab_bar
+config.status_update_interval = colors.status_update_interval
+config.tab_bar_at_bottom = colors.tab_bar_at_bottom
+config.tab_max_width = colors.tab_max_width
+config.use_fancy_tab_bar = colors.use_fancy_tab_bar
 
 -- Setup tab formatting
 colors.setup_tab_formatting()
