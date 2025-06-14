@@ -35,3 +35,6 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(uv generate-shell-completion zsh)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+# opencode
+export PATH=/Users/jack/.opencode/bin:$PATH

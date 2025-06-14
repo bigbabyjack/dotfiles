@@ -66,7 +66,7 @@ alias python='python3'
 alias activate='source env/bin/activate'
 alias mkvenv='python -m venv env'
 
-alias vim="nvim"
+alias v="nvim"
 
 alias repeatkeyon="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias repeatkeyoff="defaults write -g ApplePressAndHoldEnabled -bool true"

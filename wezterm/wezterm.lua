@@ -4,8 +4,8 @@ local config = wezterm.config_builder()
 
 -- Set your color scheme.
 config.color_scheme = "Tokyo Night Storm"
-config.window_background_opacity = 0.6
-config.macos_window_background_blur = 30
+config.window_background_opacity = 0.9
+config.macos_window_background_blur = 80
 
 config.switch_to_last_active_tab_when_closing_tab = true
 config.font_size = 13.0

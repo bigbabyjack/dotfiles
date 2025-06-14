@@ -1,51 +1,44 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  build = "make",
   version = false,
   opts = {
-    provider = "openai",
-    openai = {
-      endpoint = "https://api.openai.com/v1",
-      model = "o4-mini",
-      timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-      temperature = 0,
-      max_completion_tokens = 8192,
-    },
-    behaviour = { auto_suggestions = false, auto_set_keymaps = true, use_cwd_as_project_root = true },
-    mappings = {
-      suggestion = { accept = "<M-l>", next = "<M-]>", prev = "<M-[>", dismiss = "<C-]>" },
-      submit     = { normal = "<CR>", insert = "<C-s>" },
+    provider = "copilot",
+    providers = {
+      copilot = {
+        model = "claude-3.7-sonnet",
+      },
     },
   },
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-  },
-
-  -- sidebar / toggle helpers
-  keys = {
+    --- The below dependencies are optional,
+    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
+    "echasnovski/mini.icons",
+    "zbirenbaum/copilot.lua",
     {
-      "<leader>aa",
-      function() require("avante.api").ask() end,
-      mode = { "n", "v" },
-      desc = "Avante: Ask"
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {
+        default = {
+          embed_image_as_base64 = false,
+          prompt_for_file_name = false,
+          drag_and_drop = {
+            insert_mode = true,
+          },
+          use_absolute_path = true,
+        },
+      },
     },
     {
-      "<leader>at",
-      function() require("avante").toggle() end,
-      desc = "Avante: Toggle sidebar"
-    },
-    {
-      "<leader>as",
-      function()
-        local cfg = require("avante.config")
-        cfg.behaviour.auto_suggestions = not cfg.behaviour.auto_suggestions
-        print("Avante autosuggestions: " .. (cfg.behaviour.auto_suggestions and "ON" or "OFF"))
-      end,
-      desc = "Avante: Toggle autosuggestions"
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
     },
   },
 }

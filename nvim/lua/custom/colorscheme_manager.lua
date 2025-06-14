@@ -73,7 +73,7 @@ function M.apply_saved()
     f:close()
     if name and name ~= "" then
       pcall(vim.cmd.colorscheme, name)
-      vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
+      -- vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
     end
   end
 end
