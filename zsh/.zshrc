@@ -38,3 +38,7 @@ fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
 # opencode
 export PATH=/Users/jack/.opencode/bin:$PATH
+
+if [[ -f $HOME/.api_keys ]]; then
+    source $HOME/.api_keys
+fi
