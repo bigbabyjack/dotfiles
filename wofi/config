@@ -1,0 +1,12 @@
+# wofi configuration
+prompt=Run:
+width=400
+height=400
+columns=1
+lines=10
+insensitive=true
+allow_markup=false
+term=foot
+gtk_dark=true
+show=drun
+matching=fuzzy

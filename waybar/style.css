@@ -1,0 +1,151 @@
+* {
+    font-size: 11px;
+    font-family: "JetBrains Mono";
+    color: #e2e8f0;
+}
+
+/* Define GTK CSS variables for blue color scheme */
+@define-color module-bg rgba(30, 41, 59, 0.85);
+@define-color module-bg-hover rgba(51, 65, 85, 0.95);
+@define-color primary-text #e2e8f0;
+@define-color secondary-text #94a3b8;
+@define-color accent-color #38bdf8;
+@define-color accent-bright #7dd3fc;
+@define-color shadow-color rgba(0, 0, 0, 0.6);
+@define-color shadow-color-hover rgba(0, 0, 0, 0.8);
+
+window#waybar {
+    all: unset;
+    background: transparent;
+}
+
+/* Remove container styling since we're styling individual components */
+.modules-left,
+.modules-center,
+.modules-right {
+    all: unset;
+    background: transparent;
+}
+
+/* Base styling for all individual components */
+#cpu,
+#memory,
+#custom-nvidia,
+#disk,
+#workspaces,
+#custom-media,
+#custom-weather,
+#custom-system-tray,
+#clock,
+#custom-power {
+    padding: 4px 8px;
+    margin: 5px 4px;
+    border-radius: 8px;
+    background: @module-bg;
+    box-shadow: 0px 0px 2px @shadow-color;
+    transition: all .3s ease;
+}
+
+/* Tooltip styling */
+tooltip {
+    background: @module-bg;
+    color: @primary-text;
+}
+
+/* Hover effects for interactive modules */
+#cpu:hover,
+#memory:hover,
+#custom-nvidia:hover,
+#disk:hover,
+#clock:hover,
+#custom-media:hover,
+#custom-weather:hover,
+#custom-system-tray:hover,
+#custom-power:hover {
+    background: @module-bg-hover;
+    color: @accent-bright;
+}
+
+/* Hardware monitoring modules (left side) */
+#cpu,
+#memory,
+#custom-nvidia,
+#disk {
+    color: @secondary-text;
+}
+
+/* Workspaces styling - special handling */
+#workspaces {
+    padding: 2px 5px;
+}
+
+#workspaces button {
+    all: unset;
+    padding: 0px 5px;
+    color: alpha(@secondary-text, .4);
+    transition: all .2s ease;
+}
+
+#workspaces button:hover {
+    color: rgba(0, 0, 0, 0);
+    border: none;
+    text-shadow: 0px 0px 1.5px @shadow-color;
+    transition: all 1s ease;
+}
+
+#workspaces button.active {
+    color: @accent-color;
+    border: none;
+    text-shadow: 0px 0px 2px @shadow-color;
+}
+
+#workspaces button.empty {
+    color: rgba(0, 0, 0, 0);
+    border: none;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
+}
+
+#workspaces button.empty:hover {
+    color: rgba(0, 0, 0, 0);
+    border: none;
+    text-shadow: 0px 0px 1.5px @shadow-color;
+    transition: all 1s ease;
+}
+
+#workspaces button.empty.active {
+    color: @accent-color;
+    border: none;
+    text-shadow: 0px 0px 2px @shadow-color;
+}
+
+/* System tray */
+#custom-system-tray {
+    color: @secondary-text;
+}
+
+/* Clock */
+#clock {
+    color: @primary-text;
+}
+
+/* Adjust margins for edge modules */
+.modules-left > *:first-child {
+    margin-left: 10px;
+}
+
+.modules-right > *:last-child {
+    margin-right: 10px;
+}
+
+/* Optional: Add some animation on hover */
+#cpu:hover,
+#memory:hover,
+#custom-nvidia:hover,
+#disk:hover,
+#clock:hover,
+#custom-media:hover,
+#custom-weather:hover,
+#custom-system-tray:hover,
+#custom-power:hover {
+    box-shadow: 0px 2px 4px @shadow-color-hover;
+}

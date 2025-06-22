@@ -1,4 +1,0 @@
-[include]
-    path = ~/dotfiles/git/.gitconfig-common
-[include]
-    path = ~/dotfiles/git/.gitconfig-env
