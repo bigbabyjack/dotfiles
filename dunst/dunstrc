@@ -1,0 +1,123 @@
+[global]
+    ### Display ###
+    monitor = 0
+    follow = none
+
+    ### Geometry ###
+    width = (0, 400)
+    height = 300
+    origin = top-right
+    offset = 15x50
+    scale = 0
+    notification_limit = 0
+
+    ### Progress bar ###
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+
+    ### Appearance ###
+    transparency = 10
+    separator_height = 2
+    padding = 12
+    horizontal_padding = 12
+    text_icon_padding = 0
+    frame_width = 2
+    frame_color = "#82aaff"
+    separator_color = frame
+    sort = yes
+
+    ### Font ###
+    font = JetBrains Mono 11
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    ### Icons ###
+    icon_position = left
+    min_icon_size = 0
+    max_icon_size = 32
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/apps/
+
+    ### History ###
+    sticky_history = yes
+    history_length = 20
+
+    ### Misc/Advanced ###
+    dmenu = /usr/bin/wofi --demnu -p "dunst: "
+    browser = /usr/bin/google-chrome-stable
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    corner_radius = 8
+    ignore_dbusclose = false
+
+    ### Wayland ###
+    force_xwayland = false
+
+    ### Legacy ###
+    force_xinerama = false
+
+    ### Mouse ###
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    # Tokyo Night Moon - Low priority notifications
+    background = "#222436"
+    foreground = "#828bb8"
+    frame_color = "#3b4261"
+    timeout = 5
+    default_icon = /usr/share/icons/Papirus-Dark/16x16/status/dialog-information.svg
+
+[urgency_normal]
+    # Tokyo Night Moon - Normal notifications
+    background = "#222436"
+    foreground = "#c8d3f5"
+    frame_color = "#82aaff"
+    timeout = 8
+    default_icon = /usr/share/icons/Papirus-Dark/16x16/status/dialog-information.svg
+
+[urgency_critical]
+    # Tokyo Night Moon - Critical notifications
+    background = "#222436"
+    foreground = "#ff757f"
+    frame_color = "#ff757f"
+    timeout = 0
+    default_icon = /usr/share/icons/Papirus-Dark/16x16/status/dialog-error.svg
+
+# Custom notification rules
+[discord]
+    appname = discord
+    background = "#2d3f76"
+    foreground = "#c8d3f5"
+    frame_color = "#82aaff"
+    timeout = 5
+
+[spotify]
+    appname = Spotify
+    background = "#222436"
+    foreground = "#a3c677"
+    frame_color = #a3c677"
+    timeout = 3
+
+[volume]
+    summary = "Volume*"
+    background = "#222436"
+    foreground = "#ffc777"
+    frame_color = "#ffc777"
+    timeout = 2

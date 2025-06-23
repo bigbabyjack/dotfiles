@@ -42,11 +42,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # set ctrl space to accept autosuggestions
-bindkey '^ ' autosuggest-accept
-
-# bind ctrl shift c to run ~/scripts/config-finder.sh
-bindkey -s '^O' 'config-finder\n'
-
+bindkey '^Y' autosuggest-accept
 export PATH=$PATH:/home/jack/.spicetify
-
 source $HOME/.aliases.zsh
