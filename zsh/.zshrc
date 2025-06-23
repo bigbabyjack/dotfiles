@@ -1,44 +1,54 @@
-if [[ -f $HOME/dotfiles/.env ]]; then
-    source $HOME/dotfiles/.env
-fi
+function append_path() {
+  if [[ -d $1 ]]; then
+    export PATH="$PATH:$1"
+  else
+    echo "Directory $1 does not exist."
+  fi
+}
 
-export ZSH="$HOME/.oh-my-zsh"
+# PATH
+append_path "/usr/local/go/bin"
+append_path "$HOME/.local/bin"
+append_path "/opt/homebrew/bin"
+append_path "/Users/jack/.opencode/bin"
 
-if [[ "$DEV_ENV" == "work" ]]; then
-    ln -sf "$HOME/dotfiles/git/.gitconfig-work" "$HOME/dotfiles/git/.gitconfig-env"
-elif [[ "$DEV_ENV" == "personal" ]]; then
-    ln -sf "$HOME/dotfiles/git/.gitconfig-personal" "$HOME/dotfiles/git/.gitconfig-env"
-fi
 
-ZSH_THEME="mytheme"
+export EDITOR=nvim
 
-zstyle ':omz:update' mode auto
-ENABLE_CORRECTION="true"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_PICTURES_HOME="$HOME/Pictures"
 
-plugins=(git aliases z zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
-source ~/.aliases.zsh
+# Basic zsh options
+setopt AUTO_CD CORRECT CORRECT_ALL HIST_VERIFY SHARE_HISTORY
+setopt HIST_IGNORE_SPACE HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST EXTENDED_HISTORY
 
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:"$HOME/bin"
-export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 
-export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/bin/npm"
+# Completion
+autoload -U compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
+
+
+# starship
+eval "$(starship init zsh)"
 eval "$(brew shellenv)"
-
-bindkey '^ ' autosuggest-accept
-
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-. "$HOME/.local/bin/env"
 eval "$(uv generate-shell-completion zsh)"
 
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
-
-# opencode
-export PATH=/Users/jack/.opencode/bin:$PATH
+# set ctrl space to accept autosuggestions
+source $HOME/.aliases.zsh
 
 if [[ -f $HOME/.api_keys ]]; then
     source $HOME/.api_keys
 fi
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+bindkey '^Y' autosuggest-accept
