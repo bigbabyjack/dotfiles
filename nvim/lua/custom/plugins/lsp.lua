@@ -154,7 +154,6 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
-      jsonls = {},
       lua_ls = {
         settings = {
           Lua = {
@@ -164,6 +163,7 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+
     }
 
     -- Ensure the servers and tools above are installed
