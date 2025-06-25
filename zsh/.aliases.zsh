@@ -38,7 +38,7 @@ alias ~='cd ~'
 alias -- -='cd -'
 
 # shortcut commands
-# alias workspace='cd ~/workspace'
+alias workspace='cd ~/workspace'
 
 # Utility aliases
 alias c='clear'
@@ -56,5 +56,3 @@ alias activate='source env/bin/activate'
 alias mkvenv='python -m venv env'
 
 alias v="nvim"
-
-alias z="zoxide"

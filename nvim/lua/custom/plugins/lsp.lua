@@ -179,13 +179,9 @@ return { -- LSP Configuration & Plugins
 
     require('mason-lspconfig').setup {
       -- Explicitly exclude rust_analyzer from automatic setup
-      automatic_installation = { exclude = { "rust_analyzer" } },
       handlers = {
         function(server_name)
           -- Skip rust_analyzer as it's handled by rustaceanvim
-          if server_name == 'rust_analyzer' or server_name == 'rust-analyzer' then
-            return
-          end
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
