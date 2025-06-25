@@ -36,3 +36,16 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "RustInlayHint", { fg = "#7d8590", italic = true })
   end,
 })
+
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  pattern = "*",
+  command = "checktime",
+})
+
+
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  callback = function()
+    vim.notify("Buffer reloaded from disk", vim.log.levels.INFO)
+  end,
+})

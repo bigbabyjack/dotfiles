@@ -49,3 +49,5 @@ vim.opt.swapfile = true
 
 -- for avante
 vim.opt.laststatus = 3
+
+vim.o.autoread = true
