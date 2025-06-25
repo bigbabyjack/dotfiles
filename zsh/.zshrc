@@ -10,9 +10,6 @@ function append_path() {
 append_path "/usr/local/go/bin"
 append_path "$HOME/.local/bin"
 
-# starship
-eval "$(starship init zsh)"
-
 export EDITOR=nvim
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -45,3 +42,6 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey '^Y' autosuggest-accept
 export PATH=$PATH:/home/jack/.spicetify
 source $HOME/.aliases.zsh
+
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
