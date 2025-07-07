@@ -9,7 +9,7 @@ fi
 # Helper functions (session ⭢ files)
 # -----------------------------------
 list_tmux_sessions() {
-  tmux list-sessions | awk -F: '{print "\t" $1}' 2>/dev/null | sort -u \
+  tmux list-sessions | awk -F: '{print "\t" $1}' 2>/dev/null | sort -u \
     | sed 's/^\s*//;s/\s*$//;s/ /_/g'  # trim spaces and replace with underscores
 }
 
@@ -38,7 +38,7 @@ selected=$( \
 [[ -z $selected ]] && exit 0
 
 # Extract the session name or file path
-if [[ $selected == * ]]; then
+if [[ $selected == * ]]; then
   session_name=$(echo "$selected" | cut -f2- -d$'\t')
   tmux switch-client -t "$session_name"
 else

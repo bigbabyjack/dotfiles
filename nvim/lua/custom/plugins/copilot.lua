@@ -19,6 +19,9 @@ return {
       },
       copilot_model = 'gpt-4o-copilot',
       workspace_folders = {},
+      filetypes = {
+        rust = false
+      }
     }
 
 

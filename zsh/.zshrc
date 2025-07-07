@@ -45,3 +45,5 @@ source $HOME/.aliases.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
+. "$HOME/.local/share/../bin/env"
