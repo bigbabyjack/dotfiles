@@ -1,0 +1,16 @@
+# Secrets - never commit
+.credentials.json
+*.backup
+
+# Personal/runtime data - exclude
+history.jsonl
+debug/
+downloads/
+file-history/
+plans/
+session-env/
+shell-snapshots/
+statsig/
+todos/
+plugins/
+projects/
