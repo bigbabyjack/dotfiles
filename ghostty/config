@@ -3,7 +3,7 @@ font-family = "JetBrainsMono"
 font-size = 12
 
 # Theme/colors (you can also use built-in themes)
-theme = "tokyonight_moon"
+theme = "TokyoNight Moon"
 
 # Window settings
 window-padding-x = 10
