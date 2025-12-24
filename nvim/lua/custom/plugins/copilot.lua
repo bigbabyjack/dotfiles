@@ -8,6 +8,10 @@ return {
       panel = {
         enabled = false,
       },
+      should_attach = function(bufnr)
+        local filetype = vim.bo[bufnr].filetype
+        return not vim.tbl_contains({ 'markdown', 'text', 'gitcommit', 'rust' }, filetype)
+      end,
       suggestion = {
         enabled = true,
         auto_trigger = true,

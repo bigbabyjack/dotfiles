@@ -3,7 +3,7 @@ font-family = "JetBrainsMono"
 font-size = 14
 
 # Theme/colors (you can also use built-in themes)
-theme = "tokyonight_moon"
+theme = "TokyoNight Moon"
 
 # Window settings
 window-padding-x = 10
@@ -21,3 +21,4 @@ background-blur = true
 
 macos-titlebar-style = hidden
 macos-option-as-alt = left
+keybind = shift+enter=text:\n

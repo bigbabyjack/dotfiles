@@ -2,3 +2,8 @@
     path = ~/dotfiles/git/.gitconfig-common
 [include]
     path = ~/dotfiles/git/.gitconfig-env
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

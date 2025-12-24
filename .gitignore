@@ -6,3 +6,4 @@ lazy-lock.json
 .gitconfig-env
 
 .aliases.*.zsh
+.DS_Store

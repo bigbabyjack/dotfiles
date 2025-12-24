@@ -9,8 +9,12 @@ function append_path() {
 # PATH
 append_path "/usr/local/go/bin"
 append_path "$HOME/.local/bin"
-append_path "/opt/homebrew/bin"
-append_path "/Users/jack/.opencode/bin"
+append_path "$HOME/.local/opt/go/bin"
+append_path "$HOME/go/bin"
+# switch on macOS vs arch linux
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    append_path "/opt/homebrew/bin"
+fi
 
 
 export EDITOR=nvim
@@ -38,8 +42,11 @@ zstyle ':completion:*' menu select
 
 # starship
 eval "$(starship init zsh)"
-eval "$(brew shellenv)"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    eval "$(brew shellenv)"
+fi
 eval "$(uv generate-shell-completion zsh)"
+eval "$(zoxide init zsh)"
 
 # set ctrl space to accept autosuggestions
 source $HOME/.aliases.zsh
@@ -52,3 +59,4 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey '^Y' autosuggest-accept
+source $HOME/.config/.env

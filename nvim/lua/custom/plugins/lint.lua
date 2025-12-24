@@ -21,7 +21,7 @@ return {
       --   inko = { "inko" },
       --   janet = { "janet" },
       --   json = { "jsonlint" },
-      --   markdown = { "vale" },
+      -- markdown = { "vale" },
       --   rst = { "vale" },
       --   ruby = { "ruby" },
       --   terraform = { "tflint" },
@@ -34,7 +34,7 @@ return {
       -- lint.linters_by_ft['inko'] = nil
       -- lint.linters_by_ft['janet'] = nil
       -- lint.linters_by_ft['json'] = nil
-      -- lint.linters_by_ft['markdown'] = nil
+      lint.linters_by_ft['markdown'] = nil
       -- lint.linters_by_ft['rst'] = nil
       -- lint.linters_by_ft['ruby'] = nil
       -- lint.linters_by_ft['terraform'] = nil

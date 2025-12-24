@@ -45,5 +45,3 @@ alias ping='ping -c 5'
 alias lg='gitui'
 
 alias v="nvim"
-
-alias z="zoxide"
