@@ -60,3 +60,4 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey '^Y' autosuggest-accept
 source $HOME/.config/.env
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
