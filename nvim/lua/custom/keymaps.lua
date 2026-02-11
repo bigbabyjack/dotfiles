@@ -6,6 +6,28 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Ruff format and fix for Python files
+vim.keymap.set('n', '<leader>f', function()
+  if vim.bo.filetype ~= 'python' then
+    vim.notify('Ruff format/fix is only available for Python files', vim.log.levels.WARN)
+    return
+  end
+
+  -- Save the file first
+  vim.cmd('write')
+
+  local file = vim.fn.expand('%:p')
+
+  -- Run ruff format
+  vim.fn.system('ruff format ' .. vim.fn.shellescape(file))
+
+  -- Run ruff check --fix (includes import sorting)
+  vim.fn.system('ruff check --fix ' .. vim.fn.shellescape(file))
+
+  -- Reload the buffer to show changes (force reload)
+  vim.cmd('edit!')
+end, { desc = '[F]ormat and fix with Ruff' })
+
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
