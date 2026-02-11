@@ -23,6 +23,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   config = function()
     local dap = require 'dap'
@@ -43,6 +44,7 @@ return {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
         'codelldb',
+        'debugpy',
       },
     }
 
@@ -87,6 +89,11 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+
+    -- Install Python specific config with uv support
+    -- nvim-dap-python natively supports 'uv' as a parameter
+    require('dap-python').setup('uv')
+
     require("dap").adapters.codelldb = {
       type = 'server',
       port = "${port}",
