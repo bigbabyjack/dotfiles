@@ -35,5 +35,3 @@ require('lazy').setup({
 
 -- Load LSP config after plugins are loaded
 require 'custom.lsp-config'
-
-require('custom.colorscheme_manager').apply_saved()

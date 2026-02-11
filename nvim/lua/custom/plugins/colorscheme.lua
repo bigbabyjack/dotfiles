@@ -1,57 +1,18 @@
-return { {
-  'sainnhe/gruvbox-material',
-  lazy = true,
+return {
+  "folke/tokyonight.nvim",
   priority = 1000,
   opts = {
-    integrations = {
-      cmp = true,
-      gitsigns = true,
-      nvimtree = true,
-      treesitter = true,
-    },
-  }
-},
-  {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    priority = 1000,
-    opts = {
-      style = "day",
-      transparent = false,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-      }
+    style = "moon",
+    transparent = false,
+    styles = {
+      comments = { italic = true },
+      keywords = { italic = true },
+      functions = { italic = true },
+      variables = {},
     },
   },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    lazy = true,
-    priority = 1000,
-    opts = {
-      variant = "moon",
-      disable_italics = true,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        functions = { italic = false },
-        variables = { italic = false },
-      }
-    },
-  },
-  {
-    "catppuccin/nvim",
-    as = "catppuccin",
-    lazy = true,
-    priority = 1000,
-    opts = {
-      flavour = "mocha", -- picks the warmest tones
-      integrations = {
-        treesitter = true,
-        telescope = true,
-        native_lsp = { enabled = true },
-      },
-    }
-  }
+  config = function(_, opts)
+    require("tokyonight").setup(opts)
+    vim.cmd.colorscheme("tokyonight")
+  end,
 }
