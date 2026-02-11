@@ -1,4 +1,5 @@
 require 'custom.options'
+require 'custom.python-provider'  -- Configure Python for remote plugins
 require 'custom.keymaps'
 require 'custom.autocommands'
 require 'custom.formatting'
