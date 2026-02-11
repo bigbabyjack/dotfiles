@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# tmux-windowizer: Two-pane session/window switcher
+# Left: sessions, Right: windows in selected session
+
+# Get current session for highlighting
+current_session=$(tmux display-message -p '#S')
+
+# List all sessions
+sessions=$(tmux list-sessions -F "#{session_name}")
+
+# If no sessions found, exit
+if [[ -z $sessions ]]; then
+    exit 0
+fi
+
+# Use fzf with preview showing windows in the selected session
+selected=$(echo "$sessions" | \
+    fzf --reverse \
+        --border \
+        --prompt="Select session: " \
+        --preview='tmux list-windows -t {} -F "#{window_index}: #{window_name} #{window_flags}" | column -t' \
+        --preview-window=right:60% \
+        --height=60% \
+        --header="Sessions | Preview: Windows in selected session" \
+        --query="$*")
+
+# Exit if nothing was selected
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+# Switch to the selected session
+if [[ -n $TMUX ]]; then
+    tmux switch-client -t "$selected"
+else
+    tmux attach-session -t "$selected"
+fi
