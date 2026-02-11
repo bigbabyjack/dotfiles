@@ -60,30 +60,43 @@ vim.lsp.config('lua_ls', {
   },
 })
 
--- Python type checking (Pyright)
-vim.lsp.config('pyright', {
-  cmd = { 'pyright-langserver', '--stdio' },
-  filetypes = { 'python' },
-  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
-  settings = {
-    pyright = {
-      disableOrganizeImports = true, -- Let ruff handle this
-    },
-    python = {
-      analysis = {
-        diagnosticSeverityOverrides = {
-          reportUndefinedVariable = 'none',
-        },
-      },
-    },
-  },
-})
+-- Python type checking (Pyright) - Commented out in favor of ty
+-- vim.lsp.config('pyright', {
+--   cmd = { 'pyright-langserver', '--stdio' },
+--   filetypes = { 'python' },
+--   root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
+--   settings = {
+--     pyright = {
+--       disableOrganizeImports = true, -- Let ruff handle this
+--     },
+--     python = {
+--       analysis = {
+--         diagnosticSeverityOverrides = {
+--           reportUndefinedVariable = 'none',
+--         },
+--       },
+--     },
+--   },
+-- })
 
 -- Python linting/formatting (Ruff)
 vim.lsp.config('ruff', {
   cmd = { 'ruff', 'server' },
   filetypes = { 'python' },
   root_markers = { 'pyproject.toml', 'ruff.toml', '.git' },
+})
+
+-- Python type checking (ty - Astral's fast type checker)
+vim.lsp.config('ty', {
+  cmd = { 'ty', 'server' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
+  settings = {
+    ty = {
+      -- Optional: Specify custom configuration file path
+      -- configurationFile = "./.config/ty.toml"
+    }
+  }
 })
 
 -- YAML LSP with schema validation
@@ -106,7 +119,7 @@ vim.lsp.config('yamlls', {
 -- Enable all configured language servers
 -- ============================================================================
 
-vim.lsp.enable({ 'bashls', 'clangd', 'gopls', 'jsonls', 'lua_ls', 'pyright', 'ruff', 'yamlls' })
+vim.lsp.enable({ 'bashls', 'clangd', 'gopls', 'jsonls', 'lua_ls', 'ruff', 'ty', 'yamlls' })
 
 -- ============================================================================
 -- LspAttach - Buffer-local keymaps and features
