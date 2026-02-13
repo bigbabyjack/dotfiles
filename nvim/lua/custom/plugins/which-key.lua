@@ -16,6 +16,11 @@ return { -- Useful plugin to show you pending keybinds.
       { '', desc = '<leader>d_', hidden = true },
       { '', desc = '<leader>c_', hidden = true },
       { '', desc = '<leader>w_', hidden = true },
+      -- Writing/Focus mode groups
+      { '<leader>z', group = '[Z]en/Focus modes' },
+      { '<leader>m', group = '[M]arkdown' },
+      { '<leader>t', group = '[T]oggle' },
+      { '<leader>w', group = '[W]riting utils' },
     }
   end,
 }

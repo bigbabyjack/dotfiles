@@ -45,6 +45,19 @@ vim.keymap.set('n', '<space><space>x', '<cmd>source %<CR>', { desc = 'Source cur
 vim.keymap.set('n', '<space>x', ':.lua<CR>', { desc = 'Source current file' })
 vim.keymap.set('v', '<space>x', ':.lua<CR>', { desc = 'Source current file' })
 
+-- ============================================================================
+-- ZEN MODE / FOCUS MODE KEYMAPS
+-- ============================================================================
+
+-- Zen mode WITHOUT twilight (clean UI, centered text - good for drafting)
 vim.keymap.set('n', '<leader>zz',
   '<cmd>lua require("zen-mode").toggle({plugins = { twilight = { enabled = false}} })<CR>',
-  { desc = 'Toggle [Z]en mode' })
+  { desc = 'Toggle [Z]en mode (no twilight)' })
+
+-- Zen mode WITH twilight (maximum focus - good for editing/revising)
+vim.keymap.set('n', '<leader>zf',
+  '<cmd>lua require("zen-mode").toggle({plugins = { twilight = { enabled = true}} })<CR>',
+  { desc = 'Toggle [Z]en mode with [F]ocus (twilight)' })
+
+-- Toggle twilight independently (paragraph focus without zen mode)
+vim.keymap.set('n', '<leader>zt', '<cmd>Twilight<CR>', { desc = 'Toggle [T]wilight focus' })
