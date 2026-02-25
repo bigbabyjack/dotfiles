@@ -150,10 +150,9 @@ vim.lsp.config('ts_ls', {
 vim.lsp.config('eslint', {
   cmd = { 'vscode-eslint-language-server', '--stdio' },
   filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
-  root_markers = { '.eslintrc', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', '.eslintrc.yaml', '.eslintrc.yml', 'eslint.config.js', 'eslint.config.mjs', 'package.json', '.git' },
+  root_markers = { '.eslintrc', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', '.eslintrc.yaml', '.eslintrc.yml', 'eslint.config.js', 'eslint.config.mjs' },
   settings = {
     validate = 'on',
-    lint = { enable = true },
     format = false, -- Prettier handles formatting
     run = 'onType',
     workingDirectory = { mode = 'location' },
@@ -251,7 +250,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Format on save via LSP — skipped for web filetypes (conform/Prettier handles those)
-    local web_filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html', 'css', 'scss', 'less' }
+    local web_filetypes = {
+      'javascript', 'javascriptreact', 'javascript.jsx',
+      'typescript', 'typescriptreact', 'typescript.tsx',
+      'html', 'css', 'scss', 'less',
+    }
     local is_web = vim.tbl_contains(web_filetypes, vim.bo[event.buf].filetype)
     if client.supports_method('textDocument/formatting') and not is_web then
       vim.api.nvim_create_autocmd('BufWritePre', {
