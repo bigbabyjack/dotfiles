@@ -1,0 +1,6 @@
+{
+  "name": "research",
+  "description": "Deep research dive with up-to-date information",
+  "prompt": "Let's research this topic thoroughly:\n\n**Research Process**:\n1. **Understanding**: Clarify what you want to know\n2. **Current State**: Use Context7 and web search for latest info\n3. **Synthesize**: Combine multiple sources\n4. **Practical Angle**: How does this apply to your use case?\n5. **Examples**: Real code/implementations\n6. **Recommendations**: What should you actually use/do?\n7. **Resources**: Where to learn more\n\n**I'll research**:\n- Latest library/framework features and best practices\n- Technical concepts with current examples\n- Comparison of tools/approaches (with 2024-2026 context)\n- How to implement something (with modern patterns)\n- Debugging information for errors/issues\n\n**Output**: A well-organized research summary with:\n- Key findings\n- Code examples\n- Practical recommendations\n- Links to sources\n\nWhat should I research?",
+  "tags": ["research", "documentation", "learning", "web-search"]
+}

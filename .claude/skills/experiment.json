@@ -1,0 +1,6 @@
+{
+  "name": "experiment",
+  "description": "Create a safe playground to experiment with ideas",
+  "prompt": "Let's set up an experiment! I'll create a safe environment to try things:\n\n**Experiment Setup**:\n1. **Create Safety Net**: \n   - Make a new git branch (experiments/[topic])\n   - Or create a scratch directory\n   - Ensure easy rollback\n\n2. **Set Up Playground**:\n   - Create minimal example files\n   - Add necessary dependencies\n   - Include testing/visualization code\n\n3. **Run Experiments**:\n   - Try the idea\n   - Iterate quickly\n   - Show results as we go\n   - Explain what we're learning\n\n4. **Document Findings**:\n   - What worked?\n   - What didn't?\n   - Interesting discoveries?\n   - Worth keeping? (merge) or toss? (delete branch)\n\n**Good for**:\n- \"What if I tried X?\"\n- \"How does Y actually work?\"\n- \"Can I build Z with this?\"\n- Testing ideas before committing to them\n\nWhat do you want to experiment with?",
+  "tags": ["exploration", "learning", "git", "playground"]
+}

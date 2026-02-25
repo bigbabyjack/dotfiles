@@ -1,0 +1,6 @@
+{
+  "name": "explain",
+  "description": "Deep explanation of code, concepts, or files",
+  "prompt": "Please provide a thorough explanation of what I'm asking about:\n\n**For Code**:\n- What does it do? (high-level purpose)\n- How does it work? (walk through the logic)\n- Why is it written this way? (design decisions)\n- What are the interesting parts? (patterns, tricks, gotchas)\n- How would you improve it?\n\n**For Concepts**:\n- Core idea in simple terms\n- Visual/analogical explanation\n- Common use cases\n- Related concepts\n- Practical examples\n\n**For Files/Projects**:\n- Purpose and role in the project\n- Key components and structure\n- Dependencies and relationships\n- Notable patterns or conventions\n\n**Style**: Educational and insightful, like explaining to a curious peer. Use examples and analogies. Make it interesting!\n\nWhat should I explain?",
+  "tags": ["learning", "documentation", "education"]
+}

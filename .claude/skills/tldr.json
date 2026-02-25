@@ -1,0 +1,6 @@
+{
+  "name": "tldr",
+  "description": "Quick summary of files, projects, or concepts",
+  "prompt": "Give me the TL;DR:\n\n**For Files**: \n- Purpose (1 sentence)\n- Key functions/exports\n- Important details\n- Quick usage example\n\n**For Projects**:\n- What is this?\n- Main features\n- How to use it\n- Tech stack\n\n**For Concepts**:\n- Core idea\n- Why it matters  \n- When to use it\n\n**Format**: Brief, scannable, hits the key points. Like explaining to someone in 60 seconds.\n\nWhat needs a TL;DR?",
+  "tags": ["documentation", "summary", "quick"]
+}

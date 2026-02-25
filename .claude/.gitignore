@@ -1,0 +1,26 @@
+# Claude Code runtime files (should never be in version control)
+cache/
+debug/
+file-history/
+history.jsonl
+paste-cache/
+plans/
+projects/
+session-env/
+shell-snapshots/
+stats-cache.json
+statsig/
+tasks/
+telemetry/
+todos/
+downloads/
+plugins/
+agents/
+
+# Keep only config files (tracked explicitly)
+# CLAUDE.md
+# settings.json
+# settings.local.json
+# README.md
+# hooks/
+# skills/

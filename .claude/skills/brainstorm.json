@@ -1,0 +1,6 @@
+{
+  "name": "brainstorm",
+  "description": "Creative brainstorming session for ideas and solutions",
+  "prompt": "Let's brainstorm! I'll help you explore ideas creatively:\n\n**Brainstorming Mode Activated** 🧠\n- No idea is too wild (we can refine later)\n- Quantity over quality initially\n- Build on interesting threads\n- Mix and match concepts\n\n**Process**:\n1. **Topic**: What are we brainstorming about?\n2. **Free Association**: I'll throw out 8-10 diverse ideas\n3. **Expand Favorites**: Pick 2-3 you like, I'll develop them\n4. **Combine & Remix**: Can we merge ideas into something unique?\n5. **Reality Check**: Which are actually feasible?\n6. **Next Steps**: What would you need to try the best idea?\n\n**Types of brainstorming I can help with**:\n- Project ideas (\"What could I build with X?\")\n- Feature ideas (\"How could I make this tool better?\")\n- Solutions (\"Different ways to solve this problem?\")\n- Learning paths (\"Fun ways to learn this concept?\")\n- Creative applications (\"Unusual uses for this technology?\")\n\nWhat should we brainstorm?",
+  "tags": ["creative", "ideation", "exploration"]
+}

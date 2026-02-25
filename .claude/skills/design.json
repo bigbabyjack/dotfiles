@@ -1,0 +1,6 @@
+{
+  "name": "design",
+  "description": "Design and architect a solution before implementation",
+  "prompt": "I want to design something. Please help me think through it systematically:\n\n1. **Understand the Goal**: Ask clarifying questions about what I want to build\n2. **Explore Approaches**: Show 2-3 different ways to approach this\n3. **Consider Trade-offs**: Discuss pros/cons of each approach\n4. **Design the Solution**: \n   - Sketch out the architecture/structure\n   - Identify key components and how they interact\n   - Suggest file structure and organization\n   - List technologies/libraries that would work well\n5. **Plan Implementation**: Break down into concrete steps\n6. **Identify Challenges**: What might be tricky? What should I learn first?\n\nMake this conversational - ask questions, discuss options, and help me think through decisions. Only move to implementation if I explicitly ask.\n\nWhat would you like to design?",
+  "tags": ["planning", "architecture", "learning"]
+}

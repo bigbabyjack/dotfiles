@@ -1,0 +1,6 @@
+{
+  "name": "quick-commit",
+  "description": "Fast git commit with smart message",
+  "prompt": "Quick commit workflow:\n1. Check git status and diff\n2. Stage appropriate files (skip sensitive/build files)\n3. Generate a concise commit message:\n   - Conventional format if applicable (feat/fix/refactor/etc)\n   - Clear and descriptive\n   - Under 72 chars first line\n4. Create commit with Co-Authored-By trailer\n5. Show summary\n\nDo NOT push unless explicitly requested.\n\nNote: This is for quick iteration. For important commits, use /commit for more thorough review.",
+  "tags": ["git", "workflow", "productivity"]
+}
