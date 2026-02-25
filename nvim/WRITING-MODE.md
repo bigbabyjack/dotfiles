@@ -51,6 +51,15 @@ When you open a markdown/text file, these are automatically enabled:
 ✓ Clean UI (no line numbers, no column guides)
 ✓ vim-pencil soft wrap mode
 
+## Auto-Disabled Features
+
+To keep writing distraction-free, these are automatically disabled:
+
+✗ Autocomplete dropdown (no snippets popping up while you type!)
+✗ Copilot suggestions (already disabled in your config)
+
+**Note:** You can still trigger autocomplete manually with `<C-Space>` if needed
+
 ## Workflow Tips
 
 ### Drafting (Initial Writing)

@@ -44,7 +44,14 @@ return {
       nerd_font_variant = 'mono',
     },
 
-    completion = { documentation = { auto_show = true } },
+    completion = {
+      documentation = { auto_show = true },
+      -- Disable completion for markdown/text files (creative writing)
+      enabled = function()
+        local ft = vim.bo.filetype
+        return ft ~= 'markdown' and ft ~= 'text' and ft ~= 'asciidoc'
+      end,
+    },
     signature = { enabled = true, window = { border = 'rounded', treesitter_highlighting = true } },
 
     snippets = {
@@ -86,6 +93,13 @@ return {
           opts = {
             -- options for blink-cmp-avante
           }
+        },
+        -- Disable snippets for markdown/text files (distraction-free writing)
+        snippets = {
+          enabled = function()
+            local ft = vim.bo.filetype
+            return ft ~= 'markdown' and ft ~= 'text' and ft ~= 'asciidoc'
+          end,
         },
       },
     },

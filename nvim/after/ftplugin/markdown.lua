@@ -7,6 +7,12 @@ local bufnr = vim.api.nvim_get_current_buf()
 -- PROSE-FRIENDLY DISPLAY SETTINGS
 -- ============================================================================
 
+-- Disable all completion sources for distraction-free writing
+-- Snippets are disabled globally in blink-cmp config for markdown files
+-- This disables LSP, path, and other completion sources too
+vim.b.completion = false
+vim.opt_local.completeopt = 'menu' -- Minimal completion options
+
 -- Enable spell checking (built-in Neovim, no plugin needed!)
 vim.opt_local.spell = true
 vim.opt_local.spelllang = 'en_us'
