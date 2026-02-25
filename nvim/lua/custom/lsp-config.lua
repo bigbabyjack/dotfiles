@@ -236,7 +236,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Enable inlay hints if supported (Neovim 0.10+)
-    if client.supports_method('textDocument/inlayHint') or client.server_capabilities.inlayHintProvider then
+    if client:supports_method('textDocument/inlayHint') or client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
@@ -257,7 +257,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       'html', 'css', 'scss', 'less',
     }
     local is_web = vim.tbl_contains(web_filetypes, vim.bo[event.buf].filetype)
-    if client.supports_method('textDocument/formatting') and not is_web then
+    if client:supports_method('textDocument/formatting') and not is_web then
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = event.buf,
         callback = function()
@@ -271,7 +271,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Document highlighting
-    if client.supports_method('textDocument/documentHighlight') then
+    if client:supports_method('textDocument/documentHighlight') then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
         callback = vim.lsp.buf.document_highlight,
