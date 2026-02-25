@@ -6,9 +6,10 @@ return {
   },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    dependencies = { 'williamboman/mason.nvim' },
     opts = {
       ensure_installed = {
-        -- Web dev servers (added now)
+        -- Web development tooling
         'typescript-language-server',
         'eslint-lsp',
         'vscode-langservers-extracted', -- provides html, cssls, jsonls
