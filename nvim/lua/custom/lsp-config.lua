@@ -155,7 +155,6 @@ vim.lsp.config('eslint', {
     validate = 'on',
     format = false, -- Prettier handles formatting
     run = 'onType',
-    workingDirectory = { mode = 'location' },
   },
 })
 
