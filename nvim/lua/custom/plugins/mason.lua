@@ -12,7 +12,8 @@ return {
         -- Web development tooling
         'typescript-language-server',
         'eslint-lsp',
-        'vscode-langservers-extracted', -- provides html, cssls, jsonls
+        'html-lsp',
+        'css-lsp',
         'tailwindcss-language-server',
         'prettier',
       },
