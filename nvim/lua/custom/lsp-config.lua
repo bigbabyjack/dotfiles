@@ -115,11 +115,90 @@ vim.lsp.config('yamlls', {
   },
 })
 
+-- TypeScript / JavaScript LSP (type checking, completions, inlay hints)
+vim.lsp.config('ts_ls', {
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+  },
+})
+
+-- ESLint LSP (linting diagnostics; auto-fix wired in LspAttach below)
+vim.lsp.config('eslint', {
+  cmd = { 'vscode-eslint-language-server', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+  root_markers = { '.eslintrc', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', '.eslintrc.yaml', '.eslintrc.yml', 'eslint.config.js', 'eslint.config.mjs', 'package.json', '.git' },
+  settings = {
+    validate = 'on',
+    lint = { enable = true },
+    format = false, -- Prettier handles formatting
+    run = 'onType',
+    workingDirectory = { mode = 'location' },
+  },
+})
+
+-- HTML LSP
+vim.lsp.config('html', {
+  cmd = { 'vscode-html-language-server', '--stdio' },
+  filetypes = { 'html' },
+  root_markers = { 'package.json', '.git' },
+  init_options = {
+    provideFormatter = false, -- Prettier handles formatting
+  },
+})
+
+-- CSS / SCSS / Less LSP
+vim.lsp.config('cssls', {
+  cmd = { 'vscode-css-language-server', '--stdio' },
+  filetypes = { 'css', 'scss', 'less' },
+  root_markers = { 'package.json', '.git' },
+  settings = {
+    css = { validate = true },
+    scss = { validate = true },
+    less = { validate = true },
+  },
+})
+
+-- Tailwind CSS LSP (only activates when tailwind.config.* is present)
+vim.lsp.config('tailwindcss', {
+  cmd = { 'tailwindcss-language-server', '--stdio' },
+  filetypes = { 'html', 'css', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  root_markers = { 'tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.cjs', 'tailwind.config.mjs', 'postcss.config.js', 'postcss.config.ts' },
+  settings = {
+    tailwindCSS = {
+      validate = true,
+    },
+  },
+})
+
 -- ============================================================================
 -- Enable all configured language servers
 -- ============================================================================
 
-vim.lsp.enable({ 'bashls', 'clangd', 'gopls', 'jsonls', 'lua_ls', 'ruff', 'ty', 'yamlls' })
+vim.lsp.enable({ 'bashls', 'clangd', 'gopls', 'jsonls', 'lua_ls', 'ruff', 'ty', 'yamlls', 'ts_ls', 'eslint', 'html', 'cssls', 'tailwindcss' })
 
 -- ============================================================================
 -- LspAttach - Buffer-local keymaps and features
@@ -161,8 +240,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
-    -- Format on save with timeout protection
-    if client.supports_method('textDocument/formatting') then
+    -- ESLint: fix all auto-fixable issues on save (linting, not formatting)
+    if client.name == 'eslint' then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = event.buf,
+        callback = function()
+          vim.cmd('EslintFixAll')
+        end,
+      })
+    end
+
+    -- Format on save via LSP — skipped for web filetypes (conform/Prettier handles those)
+    local web_filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html', 'css', 'scss', 'less' }
+    local is_web = vim.tbl_contains(web_filetypes, vim.bo[event.buf].filetype)
+    if client.supports_method('textDocument/formatting') and not is_web then
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = event.buf,
         callback = function()
