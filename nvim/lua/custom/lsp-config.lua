@@ -151,6 +151,8 @@ vim.lsp.config('eslint', {
   cmd = { 'vscode-eslint-language-server', '--stdio' },
   filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
   root_markers = { '.eslintrc', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', '.eslintrc.yaml', '.eslintrc.yml', 'eslint.config.js', 'eslint.config.mjs' },
+  -- hostInfo tells the server it's running inside Neovim (required for path resolution)
+  init_options = { hostInfo = 'neovim' },
   settings = {
     validate = 'on',
     format = false, -- Prettier handles formatting
