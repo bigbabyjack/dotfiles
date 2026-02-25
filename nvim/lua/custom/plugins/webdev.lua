@@ -15,7 +15,7 @@ return {
       },
       format_on_save = {
         timeout_ms = 2000,
-        lsp_fallback = false, -- Don't fall back to LSP; Prettier or nothing
+        lsp_format = 'never', -- Don't fall back to LSP; Prettier or nothing
       },
     },
   },
