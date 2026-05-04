@@ -97,3 +97,15 @@ Append-only ADR-lite log. Dated entries; never edit, never reorder.
 **Rationale:** Single source of truth for formatting. Avoids double-formatting (LSP + tool) on filetypes where both could apply.
 
 **Consequences:** `shfmt` and `prettier` are not yet installed system-wide; conform will warn and skip until `paru -S shfmt prettier` is run. Format-on-save behavior for Python/Rust/Go is unchanged because conform falls back to their LSPs.
+
+---
+
+## 2026-05-03 — Revert treesitter main-branch migration
+
+**Context:** The main-branch migration committed earlier today (f869473) didn't work cleanly in practice. The exact failure wasn't fully diagnosed before reverting.
+
+**Decision:** Revert via git revert (commit ea05a59). Restore lazy-lock.json and the on-disk checkout to master @ 42fc28ba. Keep using the existing directive workarounds for master's broken queries on Neovim 0.12.
+
+**Rationale:** Master is archived but functional. The user's textobjects + highlighting workflow matters more than being on the maintained branch right now. A future attempt should test against `nvim --clean` first.
+
+**Consequences:** We're on an archived plugin branch and carrying the set-lang-from-info-string!/set-lang-from-mimetype!/downcase!/kind-eq? workarounds indefinitely. Net config is unchanged from before today's sweep.

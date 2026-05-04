@@ -9,7 +9,7 @@ Modernization sweep nearly done. Remaining items below.
 ## Recent decisions (and why)
 - Removed all dead/disabled nvim plugin specs (copilot, avante, copilotchat, indent_line, floaterminal, lint).
 - nvim-lint deleted: `linters_by_ft` was empty; LSPs (ruff, clippy, gopls, lua_ls, bashls) handle all linting today.
-- Migrated nvim-treesitter and nvim-treesitter-textobjects to `branch = 'main'`. Dropped the master-archive directive workarounds.
+- Attempted to migrate nvim-treesitter to `branch = 'main'`; reverted (commit ea05a59) — the main-branch rewrite was too disruptive in this session. Stayed on archived master with the existing directive workarounds.
 - Replaced telescope with fzf-lua (faster on large repos, fewer deps, integrates with system fzf). Lost live-preview-on-cursor in the colorscheme picker; selection applies on accept.
 - Added conform.nvim and consolidated format-on-save through it (removed the LSP-side BufWritePre autocmd in lsp-config.lua to avoid double-formatting).
 - Migrated `windowrulev2` → `windowrule` (Hyprland 0.45+ unified syntax).
@@ -20,7 +20,7 @@ Modernization sweep nearly done. Remaining items below.
 - Bootstrapped lualine with active LSP-clients display and lazy/oil/quickfix extensions.
 
 ## Open threads
-- **Verify in nvim:** treesitter main branch + textobjects-main are still stabilizing. Test `:checkhealth nvim-treesitter` and try af/if/ac/ic and ]m/[m binds. Revert to master pin if broken.
+- **Treesitter main migration deferred.** nvim-treesitter master is archived; we're still on it. Future attempt should: (a) read the main-branch README carefully for the actual setup pattern, (b) test in a temporary nvim --clean session before committing, (c) be ready for textobjects-main rough edges.
 - **Install missing formatters:** `paru -S shfmt prettier` to make conform's shell/json/yaml/markdown/js/ts formatters functional.
 - **`.dotfiles/` parallel tree** — old macOS bootstrap/profile system still present unused. Decision pending.
 - **tmux-resurrect** (`tmux/tmux.conf:138`) — hardcoded path; either adopt tpm or document the manual install.
