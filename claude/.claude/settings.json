@@ -12,7 +12,8 @@
     "playwright@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "editorMode": "vim",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "agentPushNotifEnabled": true
 }
