@@ -2,6 +2,13 @@
   "attribution": {
     "commit": ""
   },
+  "permissions": {
+    "allow": [
+      "Bash(scripts/committer)",
+      "Bash(scripts/committer *)"
+    ],
+    "defaultMode": "auto"
+  },
   "statusLine": {
     "type": "command",
     "command": "printf '[%s@%s %s]' \"$(whoami)\" \"$(hostname -s)\" \"$(basename \"$(pwd)\")\""
@@ -12,8 +19,8 @@
     "playwright@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true
   },
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "editorMode": "vim",
-  "skipAutoPermissionPrompt": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
