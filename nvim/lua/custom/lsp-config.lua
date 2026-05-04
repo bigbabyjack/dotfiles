@@ -60,23 +60,11 @@ vim.lsp.config('lua_ls', {
   },
 })
 
--- Python type checking (Pyright)
-vim.lsp.config('pyright', {
-  cmd = { 'pyright-langserver', '--stdio' },
+-- Python type checking (ty - Astral)
+vim.lsp.config('ty', {
+  cmd = { 'ty', 'server' },
   filetypes = { 'python' },
-  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
-  settings = {
-    pyright = {
-      disableOrganizeImports = true, -- Let ruff handle this
-    },
-    python = {
-      analysis = {
-        diagnosticSeverityOverrides = {
-          reportUndefinedVariable = 'none',
-        },
-      },
-    },
-  },
+  root_markers = { 'pyproject.toml', 'ty.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
 })
 
 -- Python linting/formatting (Ruff)
@@ -106,7 +94,7 @@ vim.lsp.config('yamlls', {
 -- Enable all configured language servers
 -- ============================================================================
 
-vim.lsp.enable({ 'bashls', 'clangd', 'gopls', 'jsonls', 'lua_ls', 'pyright', 'ruff', 'yamlls' })
+vim.lsp.enable { 'bashls', 'clangd', 'gopls', 'jsonls', 'lua_ls', 'ty', 'ruff', 'yamlls' }
 
 -- ============================================================================
 -- LspAttach - Buffer-local keymaps and features
@@ -137,33 +125,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
       return
     end
 
-    -- Special handling for ruff - disable hover/definition (let pyright handle these)
+    -- Special handling for ruff - disable hover/definition (let ty handle these)
     if client.name == 'ruff' then
       client.server_capabilities.hoverProvider = false
       client.server_capabilities.definitionProvider = false
     end
 
     -- Enable inlay hints if supported (Neovim 0.10+)
-    if client.supports_method('textDocument/inlayHint') or client.server_capabilities.inlayHintProvider then
+    if client.supports_method 'textDocument/inlayHint' or client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
     -- Format on save with timeout protection
-    if client.supports_method('textDocument/formatting') then
+    if client.supports_method 'textDocument/formatting' then
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = event.buf,
         callback = function()
-          vim.lsp.buf.format({
+          vim.lsp.buf.format {
             bufnr = event.buf,
             async = false,
             timeout_ms = 2000,
-          })
+          }
         end,
       })
     end
 
     -- Document highlighting
-    if client.supports_method('textDocument/documentHighlight') then
+    if client.supports_method 'textDocument/documentHighlight' then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
         callback = vim.lsp.buf.document_highlight,

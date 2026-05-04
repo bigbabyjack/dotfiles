@@ -3,7 +3,6 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      'AndreM222/copilot-lualine',
     },
     opts = {
       options = {
@@ -27,7 +26,7 @@ return {
           },
         },
         lualine_c = { { 'filename', path = 1 } },
-        lualine_x = { 'copilot', 'fileformat', 'filetype' },
+        lualine_x = { 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
       },

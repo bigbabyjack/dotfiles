@@ -74,8 +74,8 @@ Entry point: `nvim/init.lua`
 - **gopls** - Go
 - **jsonls** - JSON with schema validation (via schemastore.nvim)
 - **lua_ls** - Lua
-- **pyright** - Python type checking
-- **ruff** - Python linting/formatting (hover/definition disabled, defers to pyright)
+- **ty** - Python type checking (Astral, Rust-based)
+- **ruff** - Python linting/formatting (hover/definition disabled, defers to ty)
 - **yamlls** - YAML with schema validation (via schemastore.nvim)
 
 **Rust Tooling**:

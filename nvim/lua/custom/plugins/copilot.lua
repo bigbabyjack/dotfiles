@@ -1,5 +1,6 @@
 return {
   'zbirenbaum/copilot.lua',
+  enabled = false,
   cmd = 'Copilot',
   event = 'InsertEnter',
   opts = {},
@@ -20,14 +21,13 @@ return {
       copilot_model = 'gpt-4o-copilot',
       workspace_folders = {},
       filetypes = {
-        rust = false
-      }
+        rust = false,
+      },
     }
 
-
     vim.keymap.set('n', '<leader>cpt', function()
-      print("Toggling copilot")
-      require("copilot.suggestion").toggle_auto_trigger()
-    end, { noremap = true, silent = true, desc = "Toggle Copilot auto trigger" })
+      print 'Toggling copilot'
+      require('copilot.suggestion').toggle_auto_trigger()
+    end, { noremap = true, silent = true, desc = 'Toggle Copilot auto trigger' })
   end,
 }
