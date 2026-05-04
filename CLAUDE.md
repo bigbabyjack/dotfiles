@@ -58,7 +58,7 @@ Entry point: `nvim/init.lua`
 
 **Colorscheme system** (`custom/colorscheme_manager.lua`):
 - Persistent colorscheme selection stored in state file
-- Telescope picker for switching schemes
+- fzf-lua picker for switching schemes
 - Keybinds: `<leader>tc` (pick), `<leader>tn` (next), `<leader>tp` (prev)
 - Commands: `:ColorSchemeSet`, `:ColorSchemeNext`, `:ColorSchemePrev`, `:ColorSchemePick`
 

@@ -50,7 +50,6 @@ return {
       flavour = 'mocha', -- picks the warmest tones
       integrations = {
         treesitter = true,
-        telescope = true,
         native_lsp = { enabled = true },
       },
     },
