@@ -49,3 +49,51 @@ Append-only ADR-lite log. Dated entries; never edit, never reorder.
 **Rationale:** `uv` provides `uv venv`, `uv run`, and project-aware execution. Manual venv activation is no longer the standard entry point.
 
 **Consequences:** Any muscle-memory `activate` invocations will fail until retrained.
+
+---
+
+## 2026-05-03 — Delete nvim-lint plugin
+
+**Context:** `lint.lua` had `linters_by_ft = {}` with the autocmd calling `try_lint()` on no configured linters. Effectively dead code.
+
+**Decision:** Delete the plugin entirely.
+
+**Rationale:** LSP servers (ruff, clippy via rustaceanvim, gopls, lua_ls, bashls) cover all currently-edited languages. nvim-lint adds a load-time cost for zero benefit.
+
+**Consequences:** No non-LSP linters available. Re-add deliberately if shellcheck, markdownlint, vale, etc. become wanted.
+
+---
+
+## 2026-05-03 — Migrate nvim-treesitter and textobjects to main branch
+
+**Context:** nvim-treesitter master is archived. The previous config carried a custom set-lang-from-info-string!/set-lang-from-mimetype!/downcase!/kind-eq? workaround because master's queries broke on Neovim 0.12.
+
+**Decision:** Switch both nvim-treesitter and nvim-treesitter-textobjects to `branch = 'main'`. Use the new install/start API. Drop the directive workaround.
+
+**Rationale:** main is the active rewrite. The workaround was a stopgap that we don't need on a maintained branch.
+
+**Consequences:** Textobjects API is different (`require('nvim-treesitter-textobjects.select').select_textobject`). All af/if/ac/ic/al/il/ab/ib/aa/ia and ]m/[m/]]/[[ binds rewritten and preserved. The main-branch textobjects plugin is still stabilizing — verify in nvim and revert to master pin if broken.
+
+---
+
+## 2026-05-03 — Replace telescope with fzf-lua
+
+**Context:** Telescope was the search/picker plugin and underpinned the custom colorscheme picker, the LSP navigation keybinds, and `vim.ui.select`.
+
+**Decision:** Switch to fzf-lua. Migrate all keybinds. Rewrite the colorscheme picker.
+
+**Rationale:** fzf-lua is faster on large repos, has fewer Lua dependencies, and integrates with the system `fzf` binary already installed via pacman.
+
+**Consequences:** The colorscheme picker no longer live-previews on cursor move — selection applies on accept and Esc restores the original. ui.select is now backed by `fzf.register_ui_select()`. Removed the `telescope` integration flag from catppuccin and dropped the telescope dep from `go.nvim`.
+
+---
+
+## 2026-05-03 — Add conform.nvim and consolidate format-on-save
+
+**Context:** Format-on-save was wired into `lsp-config.lua` via a BufWritePre autocmd that ran `vim.lsp.buf.format` on every buffer with a formatting-capable LSP. No support for non-LSP formatters (e.g., prettier on markdown).
+
+**Decision:** Add conform.nvim. Configure stylua/shfmt/prettier per filetype. Remove the LSP BufWritePre autocmd. Use `lsp_format = 'fallback'` so Python/Rust/Go (no conform formatter configured) fall back to their LSPs.
+
+**Rationale:** Single source of truth for formatting. Avoids double-formatting (LSP + tool) on filetypes where both could apply.
+
+**Consequences:** `shfmt` and `prettier` are not yet installed system-wide; conform will warn and skip until `paru -S shfmt prettier` is run. Format-on-save behavior for Python/Rust/Go is unchanged because conform falls back to their LSPs.
