@@ -37,16 +37,16 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # set ctrl space to accept autosuggestions
 bindkey '^Y' autosuggest-accept
-export PATH=$PATH:/home/jack/.spicetify
+export PATH="$PATH:$HOME/.spicetify"
 source $HOME/.aliases.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
-. "$HOME/.local/share/../bin/env"
+. "$HOME/.local/bin/env"
 
 # opencode
-export PATH=/home/jack/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
