@@ -100,7 +100,7 @@ Entry point: `nvim/init.lua`
 **Key patterns**:
 - Uses `$mainMod = ALT` for all window manager keybinds
 - Custom scripts in `~/dotfiles/scripts/` for session management
-- Window opacity overrides for YouTube/Twitch (see windowrulev2 rules)
+- Window opacity overrides for YouTube/Twitch (see windowrule rules)
 - XWayland force_zero_scaling for better rendering
 
 ### Shell Architecture (zsh/)
@@ -168,9 +168,9 @@ Plugins specify lazy-loading via:
 - `cmd` - Load on command
 
 ### Hyprland Window Rules
-Use `windowrulev2` for advanced rules with multiple criteria:
+Use `windowrule` for rules with multiple criteria (the v1/v2 syntax was unified in Hyprland 0.45.0):
 ```conf
-windowrulev2 = opacity 1.0 override 1.0 override,title:(.*YouTube.*)
+windowrule = opacity 1.0 override 1.0 override,title:(.*YouTube.*)
 ```
 
 ### Path Management in Zsh
