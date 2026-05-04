@@ -1,21 +1,27 @@
 {
     "spacing": 4,
     "modules-left": [
-        "cpu",
-        "memory",
-        "custom/nvidia",
-        "disk"
+        "group/hardware"
     ],
     "modules-center": [
         "hyprland/workspaces"
     ],
     "modules-right": [
         "custom/media",
+        "group/status",
         "custom/weather",
-        "custom/system-tray",
         "clock",
         "custom/power"
     ],
+
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "temperature", "memory", "custom/nvidia", "disk"]
+    },
+    "group/status": {
+        "orientation": "horizontal",
+        "modules": ["custom/updates", "custom/mouse", "network", "bluetooth", "wireplumber", "idle_inhibitor"]
+    },
 
     // Hardware monitoring (left side)
     "cpu": {
@@ -23,18 +29,73 @@
         "tooltip": false
     },
     "memory": {
-        "format": "󰑭 {}%"
+        "format": "󰑭 {percentage}% 󰓡 {swapPercentage}%",
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
+    },
+    "temperature": {
+        "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+        "input-filename": "temp1_input",
+        "critical-threshold": 85,
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip-format": "CPU (Tctl)"
     },
     "custom/nvidia": {
-        "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,nounits,noheader | sed 's/\\([0-9]\\+\\), \\([0-9]\\+\\)/󰢮 \\1% \\2°C/g'",
+        "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,memory.used,memory.total --format=csv,nounits,noheader | awk -F', ' '{printf \"󰢮 %d%% %d°C  %.1f/%.0fG\\n\", $1, $2, $3/1024, $4/1024}'",
         "format": "{}",
         "interval": 3
     },
     "disk": {
         "format": "󰋊 {percentage_used}%",
         "interval": 30,
-        "path": "/",
+        "path": "/home",
         "unit": "GB",
+    },
+    "custom/updates": {
+        "exec": "$HOME/.config/waybar/scripts/updates.sh",
+        "return-type": "json",
+        "interval": 1800,
+        "on-click": "kitty -e paru -Syu"
+    },
+    "custom/mouse": {
+        "exec": "$HOME/.config/waybar/scripts/mouse_battery.sh",
+        "return-type": "json",
+        "interval": 60
+    },
+    "network": {
+        "format-wifi": "󰖩 {essid} {signalStrength}%",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󰖪",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "kitty -e nmtui"
+    },
+    "bluetooth": {
+        "format": "󰂯",
+        "format-connected": "󰂱 {device_alias}",
+        "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+        "format-disabled": "󰂲",
+        "format-off": "󰂲",
+        "tooltip-format": "{controller_alias}\n{num_connections} connected",
+        "on-click": "kitty -e bluetoothctl"
+    },
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰅶",
+            "deactivated": "󰾪"
+        },
+        "tooltip-format-activated": "Idle inhibitor on",
+        "tooltip-format-deactivated": "Idle inhibitor off"
     },
     // Center workspaces
     "hyprland/workspaces": {
