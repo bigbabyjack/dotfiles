@@ -67,6 +67,10 @@ Re-read both at session start. Update `WORKING_NOTES.md` at session end and befo
 - Where existing code has problems that affect the current work (e.g., a file that's grown too large, tangled responsibilities), include targeted improvements as part of the change.
 - Don't propose unrelated refactoring. Stay focused on what serves the current goal.
 
+## GPU jobs
+
+GPU-touching commands on this machine go through `gpuq` — see the project's `AGENTS.md` for setup. Don't fall back to running CUDA commands directly; ask the user if `gpuq` isn't on PATH.
+
 ## Risky / destructive actions
 
 Confirm before doing anything that's hard to reverse: deleting branches/files, force-pushing, dropping tables, rewriting published history, killing processes you didn't start, modifying CI/CD, anything that affects shared state outside this machine. Match the scope of action to what was actually requested.
