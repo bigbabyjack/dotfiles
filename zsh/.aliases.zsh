@@ -25,8 +25,6 @@ alias ldir='eza --only-dirs --icons --group-directories-first --header --color=a
 alias lfile='eza --only-files --icons --group-directories-first --header --color=always'
 alias lhidden='eza -a --ignore-glob="*" --icons --group-directories-first --color=always'
 
-alias activate="source env/bin/activate"
-
 # dotfile commands
 alias dotfiles='cd ~/dotfiles'
 
@@ -52,7 +50,5 @@ alias lg='gitui'
 
 # Python
 alias python='python3'
-alias activate='source env/bin/activate'
-alias mkvenv='python -m venv env'
 
 alias v="nvim"
