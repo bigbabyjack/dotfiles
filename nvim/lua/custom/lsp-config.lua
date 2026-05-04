@@ -136,19 +136,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
-    -- Format on save with timeout protection
-    if client.supports_method 'textDocument/formatting' then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = event.buf,
-        callback = function()
-          vim.lsp.buf.format {
-            bufnr = event.buf,
-            async = false,
-            timeout_ms = 2000,
-          }
-        end,
-      })
-    end
+    -- Format on save is handled by conform.nvim (lsp_format = "fallback"
+    -- means conform invokes LSP formatting when no formatter is configured
+    -- for the buffer's filetype).
 
     -- Document highlighting
     if client.supports_method 'textDocument/documentHighlight' then
